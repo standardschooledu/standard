@@ -1,103 +1,376 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import {
+  BookOpen,
+  Users,
+  Award,
+  Calendar,
+  ArrowRight,
+  Phone,
+  Mail,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
-export default function Home() {
+export default function StandardSchoolLanding() {
+  const blogPosts = [
+    {
+      id: 1,
+      title: "Preparing Students for the Digital Age",
+      excerpt:
+        "How Standard School integrates technology into our curriculum to prepare students for tomorrow's challenges.",
+      date: "March 15, 2024",
+      category: "Education",
+      image: "/file.jpg",
+    },
+    {
+      id: 2,
+      title: "Excellence in Sports: Our Championship Journey",
+      excerpt: "Celebrating our recent victories and the importance of sports in character development.",
+      date: "March 10, 2024",
+      category: "Sports",
+      image: "/children.jpg",
+    },
+    {
+      id: 3,
+      title: "Parent-Teacher Partnership: Building Success Together",
+      excerpt: "Exploring how collaboration between parents and teachers creates the best learning environment.",
+      date: "March 5, 2024",
+      category: "Community",
+      image: "/pta.jpg",
+    },
+  ]
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-50 pt-0 sticky top-0 z-50">
+        <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <BookOpen className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-xl font-bold text-gray-900">Standard School</span>
+          </div>
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link href="#about" className="text-ash-700 hover:text-primary font-medium">
+              About
+            </Link>
+            <Link href="#programs" className="text-ash-700 hover:text-primary font-medium">
+              Programs
+            </Link>
+            <Link href="#admissions" className="text-ash-700 hover:text-primary font-medium">
+              Admissions
+            </Link>
+            <Link href="#blog" className="text-ash-700 hover:text-primary font-medium">
+              News
+            </Link>
+            <Link href="#contact" className="text-ash-700 hover:text-primary font-medium">
+              Contact
+            </Link>
+          </nav>
+          <Button className="bg-primary hover:bg-primary text-white">Apply Now</Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-gold-50 to-ash-50 py-20 lg:py-32">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <Badge className="bg-primary/40 text-gold-800 hover:bg-gold-200">Excellence in Education Since 1985</Badge>
+              <h1 className="text-4xl lg:text-6xl font-bold text-ash-900 leading-tight">
+                Shaping Tomorrow's
+                <span className="text-primary"> Leaders</span>
+              </h1>
+              <p className="text-lg text-gray-500 max-w-lg">
+                At Standard School, we provide world-class education that nurtures academic excellence, character
+                development, and prepares students for success in an ever-changing world.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-primary hover:bg-primary text-white">
+                  Schedule a Tour
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-ash-300 text-ash-700 hover:bg-ash-50 bg-transparent"
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/hero.jpg"
+                alt="Standard School Campus"
+                width={600}
+                height={500}
+                className="rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-ash-900 mb-4">Why Choose Standard School?</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              We offer a comprehensive educational experience that goes beyond academics to develop well-rounded
+              individuals.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-gray-50 pt-0 hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-ash-900">Academic Excellence</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-500 text-center">
+                  Rigorous curriculum designed to challenge and inspire students to reach their full potential with
+                  personalized learning approaches.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-50 pt-0 hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-ash-900">Expert Faculty</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-500 text-center">
+                  Dedicated teachers with advanced degrees and years of experience, committed to nurturing each
+                  student's unique talents.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-50 pt-0 hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-ash-900">Holistic Development</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-500 text-center">
+                  Comprehensive programs including sports, arts, leadership, and community service to develop
+                  well-rounded individuals.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">1,200+</div>
+              <div className="text-gray-500">Students</div>
+            </div>
+            <div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">95%</div>
+              <div className="text-gray-500">College Acceptance</div>
+            </div>
+            <div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">50+</div>
+              <div className="text-gray-500">Expert Teachers</div>
+            </div>
+            <div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">38</div>
+              <div className="text-gray-500">Years of Excellence</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Blog Section */}
+      <section id="blog" className="py-20 bg-white">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-ash-900 mb-4">Latest News & Updates</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              Stay informed about the latest happenings, achievements, and insights from our school community.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {blogPosts.map((post) => (
+              <Card key={post.id} className="border-gray-50 pt-0 hover:shadow-lg transition-shadow overflow-hidden">
+                <div className="relative h-64">
+                  <Image src={post.image || "/file.jpg"} alt={post.title} fill className="object-cover" />
+                  <Badge className="absolute top-4 left-4 bg-primary text-white">{post.category}</Badge>
+                </div>
+                <CardHeader>
+                  <div className="flex items-center text-sm text-ash-500 mb-2">
+                    <Calendar className="h-4 w-4 mr-1" />
+                    {post.date}
+                  </div>
+                  <CardTitle className="text-ash-900 hover:text-primary transition-colors">
+                    <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-500 mb-4">{post.excerpt}</CardDescription>
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="text-primary hover:text-gold-700 font-medium inline-flex items-center"
+                  >
+                    Read More
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button variant="outline" className="border-gold-500 text-primary hover:bg-gold-50 bg-transparent">
+              View All News
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary">
+        <div className="container mx-auto px-4 lg:px-6 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Ready to Join Our Community?</h2>
+          <p className="text-lg text-gray-100 mb-8 max-w-2xl mx-auto">
+            Take the first step towards your child's bright future. Schedule a campus tour or apply for admission today.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-primary hover:bg-ash-50">
+              Schedule Campus Tour
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
+            >
+              Download Brochure
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-xl font-bold">Standard School</span>
+              </div>
+              <p className="text-ash-300 mb-4">
+                Committed to excellence in education and developing tomorrow's leaders through innovative learning
+                experiences.
+              </p>
+              <div className="flex space-x-4">
+                <Facebook className="h-5 w-5 text-ash-400 hover:text-gold-400 cursor-pointer" />
+                <Twitter className="h-5 w-5 text-ash-400 hover:text-gold-400 cursor-pointer" />
+                <Instagram className="h-5 w-5 text-ash-400 hover:text-gold-400 cursor-pointer" />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2 text-ash-300">
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    Academic Programs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    Admissions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    Student Life
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Programs</h3>
+              <ul className="space-y-2 text-ash-300">
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    Elementary School
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    Middle School
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    High School
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-gold-400">
+                    Summer Programs
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Contact Info</h3>
+              <div className="space-y-3 text-ash-300">
+                <div className="flex items-center">
+                  <MapPin className="h-4 w-4 mr-2 text-gold-400" />
+                  <span>123 Education Ave, Learning City, LC 12345</span>
+                </div>
+                <div className="flex items-center">
+                  <Phone className="h-4 w-4 mr-2 text-gold-400" />
+                  <span>(555) 123-4567</span>
+                </div>
+                <div className="flex items-center">
+                  <Mail className="h-4 w-4 mr-2 text-gold-400" />
+                  <span>info@standardschool.edu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-ash-700 mt-12 pt-8 text-center text-ash-400">
+            <p>&copy; {new Date().getFullYear()} Standard School. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
