@@ -214,9 +214,9 @@ export default function StandardSchoolLanding() {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="outline" className="border-gold-500 text-primary hover:bg-gold-50 bg-transparent">
+            <Link href={'/posts'} className="border-gold-500 border-2 p-4 rounded-md text-primary hover:bg-gold-50 bg-transparent">
               View All News
-            </Button>
+            </Link>
           </div>
         </div>
       </section>
