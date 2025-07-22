@@ -126,7 +126,7 @@ export default async function BlogPage() {
                 <CardContent>
                   <CardDescription className="text-gray-500 mb-4" dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
                   <Link
-                    href={`/blog/${post.id}`}
+                    href={`/posts/${post.slug}`}
                     className="text-primary hover:text-gold-700 font-medium inline-flex items-center mt-auto"
                   >
                     Read More
