@@ -29,16 +29,10 @@ const Header = () => {
             Blogs
           </Link>
           <Link
-            href="#admissions"
+            href=""
             className="text-ash-700 hover:text-primary font-medium"
           >
-            Admissions
-          </Link>
-          <Link
-            href="#blog"
-            className="text-ash-700 hover:text-primary font-medium"
-          >
-            News
+            Academic
           </Link>
           <Link
             href="#contact"
@@ -47,9 +41,13 @@ const Header = () => {
             Contact
           </Link>
         </nav>
-        <Button className="bg-primary hover:bg-primary text-white">
-          Apply Now
-        </Button>
+ 
+        <Link href="/enroll">
+          <span className="inline-block bg-primary px-1 py-1 rounded-md text-lg font-medium hover:bg-primary text-white pl-7 pr-7 transition">
+            Enroll
+          </span>
+        </Link>
+
       </div>
     </header>
   );
