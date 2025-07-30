@@ -113,6 +113,7 @@ export default async function BlogPage() {
                     fill
                     className="object-cover h-32"
                   />
+                  {/* <Badge className="absolute top-4 left-4 bg-primary text-white">{post._embedded?.['wp:term']?.[0]}</Badge> */}
                 </div>
                 <CardHeader>
                   <div className="flex items-center text-sm text-ash-500 mb-2">
