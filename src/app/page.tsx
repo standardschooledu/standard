@@ -1,6 +1,12 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   BookOpen,
   Users,
@@ -13,9 +19,9 @@ import {
   Facebook,
   Twitter,
   Instagram,
-} from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const blogPosts = [
@@ -31,7 +37,8 @@ export default function Home() {
     {
       id: 2,
       title: "Excellence in Sports: Our Championship Journey",
-      excerpt: "Celebrating our recent victories and the importance of sports in character development.",
+      excerpt:
+        "Celebrating our recent victories and the importance of sports in character development.",
       date: "March 10, 2024",
       category: "Sports",
       image: "/children.jpg",
@@ -39,12 +46,13 @@ export default function Home() {
     {
       id: 3,
       title: "Parent-Teacher Partnership: Building Success Together",
-      excerpt: "Exploring how collaboration between parents and teachers creates the best learning environment.",
+      excerpt:
+        "Exploring how collaboration between parents and teachers creates the best learning environment.",
       date: "March 5, 2024",
       category: "Community",
       image: "/pta.jpg",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -53,20 +61,28 @@ export default function Home() {
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <Badge className="bg-primary/40 text-gold-800 hover:bg-gold-200">Excellence in Education Since 1985</Badge>
+              <Badge className="bg-primary/40 text-gold-800 hover:bg-gold-200">
+                Excellence in Education Since 1985
+              </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-ash-900 leading-tight">
                 Shaping Tomorrow's
                 <span className="text-primary"> Leaders</span>
               </h1>
               <p className="text-lg text-gray-500 max-w-lg">
-                At Standard School, we provide world-class education that nurtures academic excellence, character
-                development, and prepares students for success in an ever-changing world.
+                At Standard School, we provide world-class education that
+                nurtures academic excellence, character development, and
+                prepares students for success in an ever-changing world.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary text-white">
-                  Stories & Insights
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href={"/posts"}>
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary text-white"
+                  >
+                    Schedule a Tour
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"
@@ -93,10 +109,12 @@ export default function Home() {
       <section id="about" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-ash-900 mb-4">Why Choose Standard School?</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-ash-900 mb-4">
+              Why Choose Standard School?
+            </h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              We offer a comprehensive educational experience that goes beyond academics to develop well-rounded
-              individuals.
+              We offer a comprehensive educational experience that goes beyond
+              academics to develop well-rounded individuals.
             </p>
           </div>
 
@@ -106,12 +124,15 @@ export default function Home() {
                 <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="text-ash-900">Academic Excellence</CardTitle>
+                <CardTitle className="text-ash-900">
+                  Academic Excellence
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-gray-500 text-center">
-                  Rigorous curriculum designed to challenge and inspire students to reach their full potential with
-                  personalized learning approaches.
+                  Rigorous curriculum designed to challenge and inspire students
+                  to reach their full potential with personalized learning
+                  approaches.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -125,8 +146,9 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-gray-500 text-center">
-                  Dedicated teachers with advanced degrees and years of experience, committed to nurturing each
-                  student's unique talents.
+                  Dedicated teachers with advanced degrees and years of
+                  experience, committed to nurturing each student's unique
+                  talents.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -136,12 +158,14 @@ export default function Home() {
                 <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="text-ash-900">Holistic Development</CardTitle>
+                <CardTitle className="text-ash-900">
+                  Holistic Development
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-gray-500 text-center">
-                  Comprehensive programs including sports, arts, leadership, and community service to develop
-                  well-rounded individuals.
+                  Comprehensive programs including sports, arts, leadership, and
+                  community service to develop well-rounded individuals.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -154,19 +178,27 @@ export default function Home() {
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">1,200+</div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">
+                1,200+
+              </div>
               <div className="text-gray-500">Students</div>
             </div>
             <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">95%</div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">
+                95%
+              </div>
               <div className="text-gray-500">College Acceptance</div>
             </div>
             <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">50+</div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">
+                50+
+              </div>
               <div className="text-gray-500">Expert Teachers</div>
             </div>
             <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">38</div>
+              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">
+                38
+              </div>
               <div className="text-gray-500">Years of Excellence</div>
             </div>
           </div>
@@ -177,18 +209,31 @@ export default function Home() {
       <section id="blog" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-ash-900 mb-4">Latest News & Updates</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-ash-900 mb-4">
+              Latest News & Updates
+            </h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Stay informed about the latest happenings, achievements, and insights from our school community.
+              Stay informed about the latest happenings, achievements, and
+              insights from our school community.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
-              <Card key={post.id} className="border-gray-50 pt-0 hover:shadow-lg transition-shadow overflow-hidden">
+              <Card
+                key={post.id}
+                className="border-gray-50 pt-0 hover:shadow-lg transition-shadow overflow-hidden"
+              >
                 <div className="relative h-64">
-                  <Image src={post.image || "/file.jpg"} alt={post.title} fill className="object-cover" />
-                  <Badge className="absolute top-4 left-4 bg-primary text-white">{post.category}</Badge>
+                  <Image
+                    src={post.image || "/file.jpg"}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <Badge className="absolute top-4 left-4 bg-primary text-white">
+                    {post.category}
+                  </Badge>
                 </div>
                 <CardHeader>
                   <div className="flex items-center text-sm text-ash-500 mb-2">
@@ -200,7 +245,9 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-500 mb-4">{post.excerpt}</CardDescription>
+                  <CardDescription className="text-gray-500 mb-4">
+                    {post.excerpt}
+                  </CardDescription>
                   <Link
                     href={`/blog/${post.id}`}
                     className="text-primary hover:text-gold-700 font-medium inline-flex items-center"
@@ -214,7 +261,10 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href={'/posts'} className="border-gold-500 border-2 p-4 rounded-md text-primary hover:bg-gold-50 bg-transparent">
+            <Link
+              href={"/posts"}
+              className="border-gold-500 border-2 p-4 rounded-md text-primary hover:bg-gold-50 bg-transparent"
+            >
               View All News
             </Link>
           </div>
@@ -224,9 +274,12 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-primary">
         <div className="container mx-auto px-4 lg:px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Ready to Join Our Community?</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            Ready to Join Our Community?
+          </h2>
           <p className="text-lg text-gray-100 mb-8 max-w-2xl mx-auto">
-            Take the first step towards your child's bright future. Schedule a campus tour or apply for admission today.
+            Take the first step towards your child's bright future. Schedule a
+            campus tour or apply for admission today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary hover:bg-ash-50">
@@ -255,8 +308,8 @@ export default function Home() {
                 <span className="text-xl font-bold">Standard School</span>
               </div>
               <p className="text-ash-300 mb-4">
-                Committed to excellence in education and developing tomorrow's leaders through innovative learning
-                experiences.
+                Committed to excellence in education and developing tomorrow's
+                leaders through innovative learning experiences.
               </p>
               <div className="flex space-x-4">
                 <Facebook className="h-5 w-5 text-ash-400 hover:text-gold-400 cursor-pointer" />
@@ -337,10 +390,13 @@ export default function Home() {
           </div>
 
           <div className="border-t border-ash-700 mt-12 pt-8 text-center text-ash-400">
-            <p>&copy; {new Date().getFullYear()} Standard School. All rights reserved.</p>
+            <p>
+              &copy; {new Date().getFullYear()} Standard School. All rights
+              reserved.
+            </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }

@@ -9,4 +9,5 @@ export default interface WPPost {
     rendered: string
   }
   date: string
+  categories: string
 }

@@ -113,6 +113,7 @@ export default async function BlogPage() {
                     fill
                     className="object-cover h-32"
                   />
+                  {/* <Badge className="absolute top-4 left-4 bg-primary text-white">{post._embedded?.['wp:term']?.[0]}</Badge> */}
                 </div>
                 <CardHeader>
                   <div className="flex items-center text-sm text-ash-500 mb-2">
@@ -120,7 +121,7 @@ export default async function BlogPage() {
                     {formatDate(post.date)}
                   </div>
                   <CardTitle className="text-ash-900 hover:text-primary transition-colors">
-                    <Link href={`/blog/${post.id}`} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                    <Link href={`/posts/${post.slug}`} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

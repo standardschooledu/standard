@@ -26,7 +26,7 @@ const Header = () => {
             href="/posts"
             className="text-ash-700 hover:text-primary font-medium"
           >
-            Blogs
+            Our Blog
           </Link>
           <Link
             href=""
