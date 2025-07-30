@@ -17,7 +17,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 
-export default function StandardSchoolLanding() {
+export default function Home() {
   const blogPosts = [
     {
       id: 1,
@@ -102,7 +102,7 @@ export default function StandardSchoolLanding() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-gray-50 pt-0 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
+              <CardHeader className="text-center pt-5">
                 <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="h-8 w-8 text-primary" />
                 </div>
@@ -117,7 +117,7 @@ export default function StandardSchoolLanding() {
             </Card>
 
             <Card className="border-gray-50 pt-0 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
+              <CardHeader className="text-center pt-5">
                 <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="h-8 w-8 text-primary" />
                 </div>
@@ -132,7 +132,7 @@ export default function StandardSchoolLanding() {
             </Card>
 
             <Card className="border-gray-50 pt-0 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
+              <CardHeader className="text-center pt-5">
                 <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="h-8 w-8 text-primary" />
                 </div>
