@@ -337,8 +337,8 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-gold-400">
-                    Student Life
+                  <Link href="/login" className="hover:text-gold-400">
+                    Login
                   </Link>
                 </li>
               </ul>
