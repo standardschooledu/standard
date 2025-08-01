@@ -14,10 +14,12 @@ import { GraduationCap } from "lucide-react";
 import { useState } from "react";
 import { loginUser } from "@/lib/auth";
 import AuthGuard from "@/components/AuthGuard";
+import LoadingSpinner from "@/components/loader";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   return (
     <AuthGuard>
@@ -46,9 +48,11 @@ export default function LoginPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  loginUser(email, password);
+                  setLoading(true);
+                  await loginUser(email, password);
+                  setLoading(false);
                 }}
                 id="login-form"
                 className="space-y-4"
@@ -96,8 +100,15 @@ export default function LoginPage() {
                 <Button
                   type="submit"
                   className="w-full bg-primary hover:bg-primary"
+                  disabled={loading}
                 >
-                  Sign In
+                  {loading ? (
+                    <div className="flex items-center justify-center gap-4">
+                      Loading... <LoadingSpinner />
+                    </div>
+                  ) : (
+                    "sign In"
+                  )}
                 </Button>
               </form>
 

@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import LoadingSpinner from "@/components/loader"
 
 interface Teacher {
   id: number
@@ -68,6 +69,7 @@ export default function TeachersComponent() {
   const [searchTerm, setSearchTerm] = useState("")
   const [newTeacherEmail, setNewTeacherEmail] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [loadingAddTeacher, setLoadingAddTeacher] = useState(false)
 
   // Filter teachers based on search term
   const filteredTeachers = teachers.filter(
@@ -77,25 +79,24 @@ export default function TeachersComponent() {
       teacher.subject.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
-  const handleAddTeacher = () => {
+  const addTeacher = async () => {
+    const res = await fetch('/api/create-user', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({email: newTeacherEmail})
+    })
+    const data = await res.json()
+      alert(data.message)
+    return data
+  }
+
+  const handleAddTeacher = async () => {
     if (newTeacherEmail.trim()) {
       // Extract name from email (simple approach for demo)
-      const emailName = newTeacherEmail.split("@")[0]
-      const formattedName = emailName
-        .split(".")
-        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-        .join(" ")
+      setLoadingAddTeacher(true)
+      await addTeacher()
 
-      const newTeacher: Teacher = {
-        id: Math.max(...teachers.map((t) => t.id)) + 1,
-        name: formattedName,
-        email: newTeacherEmail.trim(),
-        subject: "Not Assigned",
-        joinDate: new Date().toISOString().split("T")[0],
-      }
-
-      setTeachers([...teachers, newTeacher])
-      setNewTeacherEmail("")
+      setLoadingAddTeacher(false)
       setIsDialogOpen(false)
     }
   }
@@ -151,8 +152,13 @@ export default function TeachersComponent() {
               <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button type="button" onClick={handleAddTeacher} disabled={!newTeacherEmail.trim()}>
-                Add Teacher
+              <Button type="button" onClick={handleAddTeacher} disabled={loadingAddTeacher}>
+                {loadingAddTeacher ? (
+                  <div className="flex items-center justify-center gap-4">
+                      Loading... <LoadingSpinner />
+                    </div>
+                )
+                 : "Add Teacher"}
               </Button>
             </DialogFooter>
           </DialogContent>

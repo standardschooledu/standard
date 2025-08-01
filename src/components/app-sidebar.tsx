@@ -3,6 +3,7 @@
 
 import { signOutUser } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import type { LucideIcon } from "lucide-react";
 
 import {
   BookOpen,
@@ -16,6 +17,7 @@ import {
   BarChart3,
   Bell,
   CreditCard,
+  LucideProps,
 } from "lucide-react"
 
 import {
@@ -35,67 +37,20 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ChevronUp, User2 } from "lucide-react"
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { ForwardRefExoticComponent, JSX, RefAttributes } from "react";
 
-// Menu items
-const menuItems = [
-  {
-    title: "Dashboard",
-    url: "/admin",
-    icon: Home,
-  },
-  {
-    title: "Students",
-    url: "#",
-    icon: GraduationCap,
-  },
-  {
-    title: "Teachers",
-    url: "/admin/teachers",
-    icon: Users,
-  },
-  {
-    title: "Classes",
-    url: "#",
-    icon: BookOpen,
-  },
-  {
-    title: "Schedule",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Reports",
-    url: "#",
-    icon: BarChart3,
-  },
-  {
-    title: "Messages",
-    url: "#",
-    icon: MessageSquare,
-  },
-  {
-    title: "Announcements",
-    url: "#",
-    icon: Bell,
-  },
-  {
-    title: "Finance",
-    url: "#",
-    icon: CreditCard,
-  },
-  {
-    title: "Documents",
-    url: "#",
-    icon: FileText,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
+type MenuItem = {
+  title: string;
+  url: string;
+  icon: JSX.Element;
+};
 
-export function AppSidebar() {
+type Props = {
+  menuItems: MenuItem[];
+};
+
+
+export function AppSidebar({menuItems}: Props) {
      const router = useRouter();
 
     const handleSignOut = async () => {
@@ -117,7 +72,7 @@ export function AppSidebar() {
                   <GraduationCap className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Greenwood High</span>
+                  <span className="truncate font-semibold">Standard School</span>
                   <span className="truncate text-xs">Admin Portal</span>
                 </div>
               </div>
@@ -134,7 +89,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={item.title === "Dashboard"}>
                     <Link href={item.url}>
-                      <item.icon />
+                      {item.icon}
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>

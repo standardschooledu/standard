@@ -44,7 +44,7 @@ export function EnrollmentChart() {
             <XAxis dataKey="month" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="students" fill="hsl(var(--primary))" />
+            <Bar dataKey="students" fill="gray" />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>
