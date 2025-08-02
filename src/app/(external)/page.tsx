@@ -74,22 +74,24 @@ export default function Home() {
                 prepares students for success in an ever-changing world.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href={"/posts"}>
+                <Link href="/posts">
                   <Button
                     size="lg"
                     className="bg-primary hover:bg-primary text-white"
                   >
-                    Schedule a Tour
+                    Stories & Insights
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-ash-300 text-ash-700 hover:bg-ash-50 bg-transparent"
-                >
-                  Learn More
-                </Button>
+                <Link href="/about">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-ash-300 text-ash-700 hover:bg-ash-50 bg-transparent"
+                  >
+                    Learn More
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">

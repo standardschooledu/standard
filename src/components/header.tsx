@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import { BookOpen } from "lucide-react";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -9,7 +10,13 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
         <Link href={'/'} className="flex items-center space-x-2">
           <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-            <BookOpen className="h-6 w-6 text-white" />
+            {/* <BookOpen className="h-6 w-6 text-white" /> */}
+            <Image
+              src="/images/school_logo_enhanced_brightness.png"
+              alt="School Logo"
+              width={40}
+              height={40}
+            />
           </div>
           <span className="text-xl font-bold text-gray-900">
             Standard School
@@ -17,7 +24,7 @@ const Header = () => {
         </Link>
         <nav className="hidden md:flex items-center space-x-6">
           <Link
-            href="#about"
+            href="/about"
             className="text-ash-700 hover:text-primary font-medium"
           >
             About
