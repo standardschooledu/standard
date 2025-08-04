@@ -42,11 +42,7 @@ const Header = () => {
             Academic
           </Link>
           <Link
-<<<<<<< HEAD
             href="/contact"
-=======
-            href="#contact"
->>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
             className="text-ash-700 hover:text-primary font-medium"
           >
             Contact
