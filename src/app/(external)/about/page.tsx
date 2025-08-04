@@ -182,6 +182,12 @@ export default function Component() {
               Contact Us
             </button>
             </Link>
+            <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              Apply for Admission
+            </button>
+            <button className="border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              Contact Us
+            </button>
           </div>
         </div>
       </section>

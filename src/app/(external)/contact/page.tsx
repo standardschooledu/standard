@@ -213,7 +213,7 @@ export default function ContactPage() {
         {/* Emergency Contact Section */}
         <Card className="mt-8 sm:mt-12 bg-gradient-to-r from-amber-50 to-gray-100 border-amber-300">
           <CardHeader className="p-4 sm:p-6">
-            <CardTitle className="text-center text-gray-800 text-lg sm:text-xl">Emergency Contact Information</CardTitle>
+            <CardTitle className="text-gray-800 text-lg sm:text-xl">Emergency Contact Information</CardTitle>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
