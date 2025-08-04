@@ -6,7 +6,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+<<<<<<< HEAD
   --color-primary: var(--primary);
+=======
+>>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);

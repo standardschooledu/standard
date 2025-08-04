@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // import campus from "@/images/campus.jpg"
 import Link from "next/link"
+=======
+>>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
 import Image from "next/image"
 import { GraduationCap, Heart, Target, Lightbulb, Users, BookOpen } from "lucide-react"
 
@@ -23,7 +26,11 @@ export default function Component() {
             </div>
             <div className="relative">
               <Image
+<<<<<<< HEAD
                 src="/images/campus.jpg"
+=======
+                src="/placeholder.svg?height=400&width=600"
+>>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
                 alt="Standard School Campus"
                 width={600}
                 height={400}
@@ -99,7 +106,11 @@ export default function Component() {
             </div>
             <div className="relative">
               <Image
+<<<<<<< HEAD
                 src="/images/female_teacher.jpg"
+=======
+                src="/placeholder.svg?height=500&width=600"
+>>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
                 alt="Students and Teachers"
                 width={600}
                 height={500}
@@ -172,6 +183,7 @@ export default function Component() {
             Experience excellence in education with a foundation built on Christian values and academic achievement.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+<<<<<<< HEAD
             <Link href="/enroll">
             <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
               Apply for Admission
@@ -182,6 +194,14 @@ export default function Component() {
               Contact Us
             </button>
             </Link>
+=======
+            <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              Apply for Admission
+            </button>
+            <button className="border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              Contact Us
+            </button>
+>>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
           </div>
         </div>
       </section>
