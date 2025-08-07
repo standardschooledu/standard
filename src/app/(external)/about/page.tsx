@@ -27,7 +27,7 @@ export default function Component() {
                 alt="Standard School Campus"
                 width={600}
                 height={400}
-                className="rounded-2xl shadow-2xl"
+                className="md:w-full rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-yellow-500 text-white p-4 rounded-xl shadow-lg">
                 <GraduationCap className="h-8 w-8" />
@@ -103,7 +103,7 @@ export default function Component() {
                 alt="Students and Teachers"
                 width={600}
                 height={500}
-                className="rounded-2xl shadow-xl"
+                className="md:w-full rounded-2xl shadow-xl"
               />
               <div className="absolute -top-6 -right-6 bg-gray-800 text-white p-4 rounded-xl shadow-lg">
                 <Heart className="h-8 w-8" />

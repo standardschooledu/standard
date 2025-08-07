@@ -62,7 +62,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <Badge className="bg-primary/40 text-gold-800 hover:bg-gold-200">
-                Excellence in Education Since 1985
+                Excellence in Education Since 1998
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-ash-900 leading-tight">
                 Shaping Tomorrow's
