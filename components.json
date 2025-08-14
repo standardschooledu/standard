@@ -1,19 +1,11 @@
-<<<<<<< HEAD
 {
-=======
-cd stan{
->>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
   "rsc": true,
   "tsx": true,
   "tailwind": {
     "config": "",
-<<<<<<< HEAD
     "css": "./src/app/globals.css",
-=======
-    "css": "src/app/globals.css",
->>>>>>> 81be9f51eed5be18b7f4677a9c350364dd437f9a
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""

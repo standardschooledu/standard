@@ -36,7 +36,7 @@ const Header = () => {
             Our Blog
           </Link>
           <Link
-            href=""
+            href="/academics"
             className="text-ash-700 hover:text-primary font-medium"
           >
             Academic

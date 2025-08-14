@@ -304,8 +304,13 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <BookOpen className="h-5 w-5 text-white" />
+                <div className="w-8 h-8 ">
+                  <Image
+                    src="/images/school_logo_enhanced_brightness-no-bg.png"
+                    alt="School Logo"
+                    width={40}
+                    height={40}
+                  />
                 </div>
                 <span className="text-xl font-bold">Standard School</span>
               </div>
@@ -324,18 +329,23 @@ export default function Home() {
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-ash-300">
                 <li>
-                  <Link href="#" className="hover:text-gold-400">
+                  <Link href="/about" className="hover:text-gold-400">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-gold-400">
+                  <Link href="/academics" className="hover:text-gold-400">
                     Academic Programs
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-gold-400">
+                  <Link href="/enroll" className="hover:text-gold-400">
                     Admissions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/academic-calendar" className="hover:text-gold-400">
+                    Academic Calendar
                   </Link>
                 </li>
                 <li>
