@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Calendar from "react-calendar"
-// import "react-calendar/dist/Calendar.css"
+import "react-calendar/dist/Calendar.css"
 import { CalendarDays, List, MapPin, Clock, X } from "lucide-react"
 
 type EventItem = {
@@ -18,71 +18,6 @@ export default function AcademicCalendarPage() {
   const [loading, setLoading] = useState(true)
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [showEventModal, setShowEventModal] = useState(false)
-
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        const res = await fetch("/api/calendar")
-        const data = await res.json()
-        setEvents(data)
-      } catch (error) {
-        console.error("Failed to fetch events:", error)
-        setEvents([
-          {
-            id: "1",
-            summary: "First Term Begins",
-            start: "2024-09-02T08:00:00Z",
-            location: "Main Campus",
-          },
-          {
-            id: "2",
-            summary: "Mid-term Break",
-            start: "2024-10-21T00:00:00Z",
-          },
-          {
-            id: "3",
-            summary: "First Term Ends",
-            start: "2024-12-13T17:00:00Z",
-          },
-          {
-            id: "4",
-            summary: "Second Term Begins",
-            start: "2025-01-06T08:00:00Z",
-            location: "Main Campus",
-          },
-          {
-            id: "5",
-            summary: "Easter Break",
-            start: "2025-03-24T00:00:00Z",
-          },
-          {
-            id: "6",
-            summary: "Second Term Ends",
-            start: "2025-04-04T17:00:00Z",
-          },
-          {
-            id: "7",
-            summary: "Third Term Begins",
-            start: "2025-04-21T08:00:00Z",
-            location: "Main Campus",
-          },
-          {
-            id: "8",
-            summary: "Final Examinations",
-            start: "2025-06-16T09:00:00Z",
-            location: "Examination Hall",
-          },
-          {
-            id: "9",
-            summary: "Third Term Ends",
-            start: "2025-07-11T17:00:00Z",
-          },
-        ])
-      }
-      setLoading(false)
-    }
-    fetchEvents()
-  }, [])
 
   const getEventType = (summary: string) => {
     const lower = summary.toLowerCase()
@@ -105,8 +40,54 @@ export default function AcademicCalendarPage() {
     }
   }
 
+  const getTermDateRanges = () => {
+    const currentYear = new Date().getFullYear()
+    return {
+      "First Term": {
+        start: new Date(currentYear, 8, 1), // September 1st
+        end: new Date(currentYear, 11, 31), // December 31st
+      },
+      "Second Term": {
+        start: new Date(currentYear + 1, 0, 1), // January 1st
+        end: new Date(currentYear + 1, 3, 30), // April 30th
+      },
+      "Third Term": {
+        start: new Date(currentYear + 1, 3, 1), // April 1st (overlapping for flexibility)
+        end: new Date(currentYear + 1, 6, 31), // July 31st
+      },
+    }
+  }
+
+  const getEventsForTerm = (termName: string) => {
+    const termRanges = getTermDateRanges()
+    const termRange = termRanges[termName as keyof typeof termRanges]
+
+    if (!termRange) return []
+
+    return events.filter((event) => {
+      const eventDate = new Date(event.start)
+      return eventDate >= termRange.start && eventDate <= termRange.end
+    })
+  }
+
+  const getOtherEvents = () => {
+    const termRanges = getTermDateRanges()
+
+    return events.filter((event) => {
+      const eventDate = new Date(event.start)
+
+      // Check if event falls within any term range
+      const isInAnyTerm = Object.values(termRanges).some((range) => eventDate >= range.start && eventDate <= range.end)
+
+      return !isInAnyTerm
+    })
+  }
+
   const getEventsForDate = (date: Date) => {
-    return events.filter((event) => new Date(event.start).toDateString() === date.toDateString())
+    return events.filter((event) => {
+      const eventDate = new Date(event.start)
+      return eventDate.toDateString() === date.toDateString()
+    })
   }
 
   const handleDateClick = (date: Date) => {
@@ -116,6 +97,119 @@ export default function AcademicCalendarPage() {
       setShowEventModal(true)
     }
   }
+
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const res = await fetch("/api/calendar")
+        const data = await res.json()
+        setEvents(data)
+      } catch (error) {
+        console.error("Failed to fetch events:", error)
+        setEvents([
+          {
+            id: "1",
+            summary: "First Term Begins",
+            start: "2024-09-02T08:00:00Z",
+            location: "Main Campus",
+          },
+          {
+            id: "2",
+            summary: "Parent-Teacher Conference",
+            start: "2024-09-15T14:00:00Z",
+            location: "School Hall",
+          },
+          {
+            id: "3",
+            summary: "Sports Day",
+            start: "2024-10-05T09:00:00Z",
+            location: "Sports Ground",
+          },
+          {
+            id: "4",
+            summary: "Mid-term Break",
+            start: "2024-10-21T00:00:00Z",
+          },
+          {
+            id: "5",
+            summary: "Science Fair",
+            start: "2024-11-12T10:00:00Z",
+            location: "Science Lab",
+          },
+          {
+            id: "6",
+            summary: "First Term Ends",
+            start: "2024-12-13T17:00:00Z",
+          },
+          {
+            id: "7",
+            summary: "Second Term Begins",
+            start: "2025-01-06T08:00:00Z",
+            location: "Main Campus",
+          },
+          {
+            id: "8",
+            summary: "Inter-House Competition",
+            start: "2025-02-14T09:00:00Z",
+            location: "School Grounds",
+          },
+          {
+            id: "9",
+            summary: "Career Day",
+            start: "2025-03-10T10:00:00Z",
+            location: "Assembly Hall",
+          },
+          {
+            id: "10",
+            summary: "Easter Break",
+            start: "2025-03-24T00:00:00Z",
+          },
+          {
+            id: "11",
+            summary: "Second Term Ends",
+            start: "2025-04-04T17:00:00Z",
+          },
+          {
+            id: "12",
+            summary: "Third Term Begins",
+            start: "2025-04-21T08:00:00Z",
+            location: "Main Campus",
+          },
+          {
+            id: "13",
+            summary: "Art Exhibition",
+            start: "2025-05-15T11:00:00Z",
+            location: "Art Studio",
+          },
+          {
+            id: "14",
+            summary: "Final Examinations",
+            start: "2025-06-16T09:00:00Z",
+            location: "Examination Hall",
+          },
+          {
+            id: "15",
+            summary: "Graduation Ceremony",
+            start: "2025-07-05T15:00:00Z",
+            location: "Main Hall",
+          },
+          {
+            id: "16",
+            summary: "Third Term Ends",
+            start: "2025-07-11T17:00:00Z",
+          },
+          {
+            id: "17",
+            summary: "Summer Workshop",
+            start: "2025-08-15T09:00:00Z",
+            location: "Workshop Room",
+          },
+        ])
+      }
+      setLoading(false)
+    }
+    fetchEvents()
+  }, [])
 
   if (loading) {
     return (
@@ -318,16 +412,25 @@ export default function AcademicCalendarPage() {
         {viewMode === "list" ? (
           <div className="space-y-4 sm:space-y-6">
             {["First Term", "Second Term", "Third Term"].map((term) => {
-              const termEvents = events.filter((event) => event.summary.toLowerCase().includes(term.toLowerCase()))
+              const termEvents = getEventsForTerm(term)
 
               if (termEvents.length === 0) return null
 
+              const termRanges = getTermDateRanges()
+              const termRange = termRanges[term as keyof typeof termRanges]
+
               return (
                 <div key={term} className="mb-6 sm:mb-8">
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-3 sm:mb-4 flex items-center gap-2">
-                    <div className="w-1 h-6 sm:h-8 bg-amber-500 rounded-full"></div>
-                    {term}
-                  </h2>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4">
+                    <h2 className="text-xl sm:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                      <div className="w-1 h-6 sm:h-8 bg-amber-500 rounded-full"></div>
+                      {term}
+                    </h2>
+                    <div className="text-xs sm:text-sm text-slate-600 mt-1 sm:mt-0">
+                      {termRange.start.toLocaleDateString("en-US", { month: "short", day: "numeric" })} -{" "}
+                      {termRange.end.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </div>
+                  </div>
                   <div className="space-y-3 sm:space-y-4">
                     {termEvents.map((event) => {
                       const date = new Date(event.start).toLocaleDateString("en-US", {
@@ -335,10 +438,6 @@ export default function AcademicCalendarPage() {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
-                      })
-                      const time = new Date(event.start).toLocaleTimeString("en-US", {
-                        hour: "2-digit",
-                        minute: "2-digit",
                       })
                       const eventType = getEventType(event.summary)
 
@@ -379,64 +478,52 @@ export default function AcademicCalendarPage() {
               )
             })}
 
-            {events.filter(
-              (event) =>
-                !["first term", "second term", "third term"].some((term) => event.summary.toLowerCase().includes(term)),
-            ).length > 0 && (
+            {getOtherEvents().length > 0 && (
               <div className="mb-6 sm:mb-8">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-3 sm:mb-4 flex items-center gap-2">
                   <div className="w-1 h-6 sm:h-8 bg-slate-400 rounded-full"></div>
                   Other Events
                 </h2>
                 <div className="space-y-3 sm:space-y-4">
-                  {events
-                    .filter(
-                      (event) =>
-                        !["first term", "second term", "third term"].some((term) =>
-                          event.summary.toLowerCase().includes(term),
-                        ),
-                    )
-                    .map((event) => {
-                      const date = new Date(event.start).toLocaleDateString("en-US", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })
-                      const eventType = getEventType(event.summary)
+                  {getOtherEvents().map((event) => {
+                    const date = new Date(event.start).toLocaleDateString("en-US", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                    const eventType = getEventType(event.summary)
 
-                      return (
-                        <div
-                          key={event.id}
-                          className={`p-4 sm:p-6 rounded-lg shadow-sm border-l-4 ${getEventStyles(eventType)} hover:shadow-md transition-shadow`}
-                        >
-                          <div className="flex flex-col gap-3 sm:gap-2">
-                            <div className="flex-1">
-                              <h3 className="text-base sm:text-lg font-semibold text-slate-800 mb-2">
-                                {event.summary}
-                              </h3>
-                              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-600">
-                                <div className="flex items-center gap-1">
-                                  <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                                  <span className="break-words">{date}</span>
-                                </div>
-                                {event.location && (
-                                  <div className="flex items-center gap-1">
-                                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                                    <span className="break-words">{event.location}</span>
-                                  </div>
-                                )}
+                    return (
+                      <div
+                        key={event.id}
+                        className={`p-4 sm:p-6 rounded-lg shadow-sm border-l-4 ${getEventStyles(eventType)} hover:shadow-md transition-shadow`}
+                      >
+                        <div className="flex flex-col gap-3 sm:gap-2">
+                          <div className="flex-1">
+                            <h3 className="text-base sm:text-lg font-semibold text-slate-800 mb-2">{event.summary}</h3>
+                            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-600">
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                <span className="break-words">{date}</span>
                               </div>
-                            </div>
-                            <div className="flex justify-start sm:justify-end">
-                              <span className="inline-block px-2 sm:px-3 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-full">
-                                {eventType.charAt(0).toUpperCase() + eventType.slice(1)}
-                              </span>
+                              {event.location && (
+                                <div className="flex items-center gap-1">
+                                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                  <span className="break-words">{event.location}</span>
+                                </div>
+                              )}
                             </div>
                           </div>
+                          <div className="flex justify-start sm:justify-end">
+                            <span className="inline-block px-2 sm:px-3 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-full">
+                              {eventType.charAt(0).toUpperCase() + eventType.slice(1)}
+                            </span>
+                          </div>
                         </div>
-                      )
-                    })}
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}
