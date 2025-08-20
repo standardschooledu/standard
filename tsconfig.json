@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/(external)/layout.tsx", ".next/types/app/(external)/posts/[slug]/page.tsx", ".next/types/app/(external)/posts/page.tsx", ".next/types/app/(external)/enroll/page.tsx", ".next/types/app/(external)/enroll/form/page.tsx", ".next/types/app/(auth)/login/page.tsx", ".next/types/app/(auth)/admin/teachers/page.tsx", ".next/types/app/(auth)/admin/page.tsx", ".next/types/app/(auth)/layout.tsx"],
   "exclude": ["node_modules"]
 }

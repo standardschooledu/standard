@@ -65,6 +65,9 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      react-progress:
+        specifier: ^0.0.12
+        version: 0.0.12(react@19.1.0)
       recharts:
         specifier: ^3.1.0
         version: 3.1.0(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-is@19.1.1)(react@19.1.0)(redux@5.0.1)
@@ -1231,6 +1234,11 @@ packages:
 
   react-is@19.1.1:
     resolution: {integrity: sha512-tr41fA15Vn8p4X9ntI+yCyeGSf1TlYaY5vlTZfQmeLBrFo3psOPX6HhTDnFNL9uj3EhP0KAQ80cugCl4b4BERA==}
+
+  react-progress@0.0.12:
+    resolution: {integrity: sha512-TuoYmbEKIrO2V4OT+14Lv9OY8eeDai9RG+O6xKwykw6VZ7cXzMlBhwCc5M7VcDPqMaxF3NkrzFt9WAxFeJjzKw==}
+    peerDependencies:
+      react: '>=0.14.0'
 
   react-promise-suspense@0.3.4:
     resolution: {integrity: sha512-I42jl7L3Ze6kZaq+7zXWSunBa3b1on5yfvUW6Eo/3fFOj6dZ5Bqmcd264nJbTK/gn1HjjILAjSwnZbV4RpSaNQ==}
@@ -2456,6 +2464,10 @@ snapshots:
       scheduler: 0.26.0
 
   react-is@19.1.1: {}
+
+  react-progress@0.0.12(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   react-promise-suspense@0.3.4:
     dependencies:

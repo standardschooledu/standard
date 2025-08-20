@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import {supabaseAdmin} from "@/lib/supabaseAdmin"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { sendLoginEmail } from "@/lib/mail"
 
 function generateRandomPassword(length = 10) {
@@ -8,28 +8,51 @@ function generateRandomPassword(length = 10) {
 }
 
 export async function POST(req: Request) {
-  const { email } = await req.json()
+  const { email, accountType } = await req.json()
 
-  if (!email) {
-    return NextResponse.json({ error: "Email is required" }, { status: 400 })
+  if (!email || !accountType) {
+    return NextResponse.json({ error: "Email and accountType are required" }, { status: 400 })
+  }
+
+  const validAccountTypes = ["teachers", "parents", "admins"]
+  if (!validAccountTypes.includes(accountType)) {
+    return NextResponse.json({ error: "Invalid accountType" }, { status: 400 })
   }
 
   const password = generateRandomPassword()
 
-  const { error } = await supabaseAdmin.auth.admin.createUser({
+  // 1. Create the user
+  const { data, error: createUserError } = await supabaseAdmin.auth.admin.createUser({
     email,
     password,
     email_confirm: true,
   })
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  if (createUserError || !data?.user) {
+    return NextResponse.json({ error: createUserError?.message || "User creation failed" }, { status: 500 })
   }
 
+  const userId = data.user.id
+
+  // 2. Insert into the correct table based on accountType
+  const { error: insertError } = await supabaseAdmin
+    .from(accountType)
+    .insert([{ id: userId }]) // Insert minimal data; you can add more fields later
+
+  if (insertError) {
+    return NextResponse.json({ error: `User created, but failed to insert into ${accountType} table` }, { status: 500 })
+  }
+
+  // 3. Send login email
   try {
     await sendLoginEmail(email, password)
-    return NextResponse.json({ success: true, message: "User created and email sent" })
-  } catch (err: any) {
-    return NextResponse.json({ error: "User created, but failed to send email" }, { status: 500 })
+    return NextResponse.json({
+      success: true,
+      message: `User created in ${accountType} table and login email sent`,
+    })
+  } catch (emailError) {
+    return NextResponse.json({
+      error: `User created and inserted into ${accountType}, but failed to send email`,
+    }, { status: 500 })
   }
 }
