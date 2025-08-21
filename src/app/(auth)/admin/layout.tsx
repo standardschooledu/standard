@@ -27,55 +27,10 @@ const menuItems = [
     icon: <Home />,
   },
   {
-    title: "Students",
-    url: "#",
-    icon: <GraduationCap />,
-  },
-  {
     title: "Teachers",
     url: "/admin/teachers",
     icon: <Users />,
-  },
-  {
-    title: "Classes",
-    url: "#",
-    icon: <BookOpen />,
-  },
-  {
-    title: "Schedule",
-    url: "#",
-    icon: <Calendar />,
-  },
-  {
-    title: "Reports",
-    url: "#",
-    icon: <BarChart3 />,
-  },
-  {
-    title: "Messages",
-    url: "#",
-    icon: <MessageSquare />,
-  },
-  {
-    title: "Announcements",
-    url: "#",
-    icon: <Bell />,
-  },
-  {
-    title: "Finance",
-    url: "#",
-    icon: <CreditCard />,
-  },
-  {
-    title: "Documents",
-    url: "#",
-    icon: <FileText />,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: <Settings />,
-  },
+  }
 ]
 
 

@@ -12,15 +12,15 @@ export default function Page() {
               <div className="md:col-span-3">
                 <OverviewCards />
               </div>
-              <div className="md:col-span-2">
+              {/* <div className="md:col-span-2">
                 <EnrollmentChart />
-              </div>
+              </div> */}
               <div className="md:col-span-1">
                 <QuickActions />
               </div>
-              <div className="md:col-span-3">
+              {/* <div className="md:col-span-3">
                 <RecentActivities />
-              </div>
+              </div> */}
             </div>
           </div>
   );
