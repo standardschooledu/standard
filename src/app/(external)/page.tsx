@@ -98,11 +98,11 @@ export default function Home() {
             </div>
             <div className="relative">
               <Image
-                src="/hero.jpg"
+                src="/images/school_frontage_edited2.jpg"
                 alt="Standard School Campus"
                 width={600}
-                height={500}
-                className="rounded-lg shadow-xl"
+                height={350}
+                className="rounded-lg shadow-xl p-0 h-full"
               />
             </div>
           </div>
