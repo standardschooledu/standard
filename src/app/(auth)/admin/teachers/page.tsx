@@ -83,7 +83,7 @@ export default function TeachersComponent() {
     const res = await fetch('/api/create-user', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({email: newTeacherEmail})
+      body: JSON.stringify({email: newTeacherEmail, accountType: "teachers"})
     })
     const data = await res.json()
       alert(data.message)
@@ -107,7 +107,7 @@ export default function TeachersComponent() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Teachers</h1>
-          <p className="text-muted-foreground">Manage and view all teachers in your institution</p>
+          <p className="text-muted-foreground">Manage and view all teachers</p>
         </div>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
