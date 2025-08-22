@@ -37,7 +37,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ChevronUp, User2 } from "lucide-react"
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { ForwardRefExoticComponent, JSX, RefAttributes } from "react";
+import { JSX } from "react";
+import { useAuthStore } from "@/store/useStore";
 
 type MenuItem = {
   title: string;
@@ -52,6 +53,7 @@ type Props = {
 
 export function AppSidebar({menuItems}: Props) {
      const router = useRouter();
+     const user = useAuthStore(state => state.user)
 
     const handleSignOut = async () => {
     try {
@@ -113,7 +115,7 @@ export function AppSidebar({menuItems}: Props) {
                     <AvatarFallback className="rounded-lg">AD</AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">Sarah Johnson</span>
+                    <span className="truncate font-semibold">{user?.email}</span>
                     <span className="truncate text-xs">School Administrator</span>
                   </div>
                   <ChevronUp className="ml-auto size-4" />

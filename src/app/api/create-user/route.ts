@@ -37,7 +37,7 @@ export async function POST(req: Request) {
   // 2. Insert into the correct table based on accountType
   const { error: insertError } = await supabaseAdmin
     .from(accountType)
-    .insert([{ id: userId }]) // Insert minimal data; you can add more fields later
+    .insert([{ id: userId, email }]) // Insert minimal data; you can add more fields later
 
   if (insertError) {
     return NextResponse.json({ error: `User created, but failed to insert into ${accountType} table` }, { status: 500 })

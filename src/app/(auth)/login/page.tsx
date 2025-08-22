@@ -15,11 +15,13 @@ import { useState } from "react";
 import { loginUser } from "@/lib/auth";
 import AuthGuard from "@/components/AuthGuard";
 import LoadingSpinner from "@/components/loader";
+import { useAuthStore } from "@/store/useStore";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
+
 
   return (
     <AuthGuard>
@@ -51,7 +53,9 @@ export default function LoginPage() {
                 onSubmit={async (e) => {
                   e.preventDefault();
                   setLoading(true);
-                  await loginUser(email, password);
+                  const data = await loginUser(email, password);
+                  // set the user state
+                  useAuthStore.getState().setUser(data.user);
                   setLoading(false);
                 }}
                 id="login-form"

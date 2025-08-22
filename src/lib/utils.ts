@@ -10,14 +10,18 @@ export function cn(...inputs: ClassValue[]) {
 export async function fetch_function(
   endpoint: string,
   method: string,
-  data?: any
+  data?: any,
+  baseUrl?: string
 ) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
+
+  const auth_token = localStorage.getItem(`sb-${process.env.NEXT_PUBLIC_PROJECT_ID}-auth-token`)
+
+  const res = await fetch(`${baseUrl || process.env.NEXT_PUBLIC_BASE_URL}/${endpoint}`, {
     method: `${method}`,
     headers: {
       "Content-Type": "application/json",
       "apikey": `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+      Authorization: `Bearer ${auth_token}`,
     },
     body: JSON.stringify(data),
   });
@@ -32,3 +36,4 @@ export async function fetch_function(
 
   return return_data;
 }
+
