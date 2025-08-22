@@ -18,15 +18,19 @@ export default function Component() {
                 About <span className="text-yellow-600">Standard School</span>
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Nurturing young minds with quality education grounded in moral values and Christian principles.
+                Founded on the principles of discipline, innovation, and character-building, 
+                Standard School provides a solid foundation from Early Years through Secondary Education. 
+                Our curriculum combines national standards with global best practices, ensuring pupils develop 
+                critical thinking, confidence, and leadership skills.
               </p>
             </div>
             <div className="relative">
               <Image
-                src="/images/campus.jpg"
+                // src="/images/campus.jpg"
+                src="/images/students_attentiveness2.jpg"
                 alt="Standard School Campus"
-                width={600}
-                height={400}
+                width={500}
+                height={250}
                 className="md:w-full rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-yellow-500 text-white p-4 rounded-xl shadow-lg">
@@ -65,7 +69,7 @@ export default function Component() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Secondary School</h3>
               <p className="text-gray-600">
-                High Standard Model College offering both boarding and day options for comprehensive education.
+                Standard School offering both boarding and day options for comprehensive education.
               </p>
             </div>
           </div>
