@@ -36,7 +36,7 @@ const menuItems = [
 
 const layout = ({children}: {children: React.ReactNode}) => {
   return (
-        <AuthGuard>
+    <AuthGuard>
       <SidebarProvider>
         <AppSidebar menuItems={menuItems} />
         <SidebarInset>
