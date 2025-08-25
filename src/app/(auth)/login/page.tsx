@@ -15,10 +15,10 @@ import { useState } from "react";
 import { loginUser } from "@/lib/auth";
 import AuthGuard from "@/components/AuthGuard";
 import LoadingSpinner from "@/components/loader";
-import { useAuthStore } from "@/store/useStore";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Image from "next/image"
 import Link from "next/link"
+import { useAuthStore } from "@/store/useStore";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter()
