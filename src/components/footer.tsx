@@ -65,12 +65,12 @@ const Footer = () => {
               <ul className="space-y-2 text-ash-300">
                 <li>
                   <Link href="#" className="hover:text-gold-400">
-                    Elementary School
+                    Nursery School
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-gold-400">
-                    Middle School
+                    Primary School
                   </Link>
                 </li>
                 <li>
@@ -95,7 +95,11 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 mr-2 text-gold-400" />
-                  <span>(555) 123-4567</span>
+                  <span><a href="+2348034570167">(+234) 803 4570 167</a></span>
+                </div>
+                <div className="flex items-center">
+                  <Phone className="h-4 w-4 mr-2 text-gold-400" />
+                  <span><a href="+2347053793037">(+234) 705 3793 037</a></span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 mr-2 text-gold-400" />

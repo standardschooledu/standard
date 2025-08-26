@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
+
 
 export default function Home() {
   const blogPosts = [
@@ -59,7 +61,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gold-50 to-ash-50 py-20 lg:py-32">
+      <section id="top" className="relative bg-gradient-to-br from-gold-50 to-ash-50 py-20 lg:py-32">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -108,6 +110,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+       {/* <a href="#bottom" className="text-center absolute bottom-5">
+        <button className=" p-2 bg-gray-200 rounded-full shadow hover:bg-gray-300">
+          ↓
+        </button>
+      </a> */}
 
       {/* Features Section */}
       <section id="about" className="py-20 bg-white">
@@ -276,7 +283,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
+      <section id="bottom" className="py-20 bg-primary">
         <div className="container mx-auto px-4 lg:px-6 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
             Ready to Join Our Community?
@@ -299,6 +306,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* <a href="#top">
+        <button className="p-2 bg-gray-200 rounded-full shadow hover:bg-gray-300">
+          top
+        </button>
+      </a> */}
 
       {/* Footer */}
       {/* <footer className="bg-gray-900 text-white py-16">

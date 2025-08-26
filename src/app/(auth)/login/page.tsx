@@ -18,6 +18,7 @@ import LoadingSpinner from "@/components/loader";
 import { useAuthStore } from "@/store/useStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -43,7 +44,11 @@ export default function LoginPage() {
           {/* School Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <Image src={'/images/school_logo_enhanced_brightness.png'} width={500} height={500} alt="school logo" className="h-32 w-32" />
+              <div className="border-primary border-2 p-3 rounded-full hover:opacity-50">
+                <a href="/">
+                  <Image src="/images/school_logo_enhanced_brightness-no-bg.png" alt="School Logo" width={40} height={40} />
+                </a>
+              </div>
             </div>
             <h1 className="text-2xl font-bold text-slate-900">
               Standard School
