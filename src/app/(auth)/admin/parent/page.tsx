@@ -18,7 +18,7 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import LoadingSpinner from "@/components/loader"
 
-interface Teacher {
+interface Parent {
   id: number
   name: string
   email: string
@@ -26,7 +26,7 @@ interface Teacher {
   joinDate: string
 }
 
-const initialTeachers: Teacher[] = [
+const initialParents: Parent[] = [
   {
     id: 1,
     name: "Sarah Johnson",
@@ -64,26 +64,26 @@ const initialTeachers: Teacher[] = [
   },
 ]
 
-export default function TeachersComponent() {
-  const [teachers, setTeachers] = useState<Teacher[]>(initialTeachers)
+export default function ParentsComponent() {
+  const [parents, setParents] = useState<Parent[]>(initialParents)
   const [searchTerm, setSearchTerm] = useState("")
-  const [newTeacherEmail, setNewTeacherEmail] = useState("")
+  const [newParentEmail, setNewParentEmail] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [loadingAddTeacher, setLoadingAddTeacher] = useState(false)
+  const [loadingAddParent, setLoadingAddParent] = useState(false)
 
-  // Filter teachers based on search term
-  const filteredTeachers = teachers.filter(
-    (teacher) =>
-      teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.subject.toLowerCase().includes(searchTerm.toLowerCase()),
+  // Filter parents based on search term
+  const filteredParents = parents.filter(
+    (parrent) =>
+      parrent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      parrent.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      parrent.subject.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
-  const addTeacher = async () => {
+  const addParent = async () => {
     const res = await fetch('/api/create-user', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({email: newTeacherEmail, account_type: "teachers"})
+      body: JSON.stringify({email: newParentEmail, account_type: "parents"})
     })
     const data = await res.json()
     console.log(data)
@@ -91,12 +91,12 @@ export default function TeachersComponent() {
     return data
   }
 
-  const handleAddTeacher = async () => {
-    if (newTeacherEmail.trim()) {
-      setLoadingAddTeacher(true)
-      await addTeacher()
+  const handleAddParent = async () => {
+    if (newParentEmail.trim()) {
+      setLoadingAddParent(true)
+      await addParent()
 
-      setLoadingAddTeacher(false)
+      setLoadingAddParent(false)
       setIsDialogOpen(false)
     }
   }
@@ -106,25 +106,25 @@ export default function TeachersComponent() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Teachers</h1>
-          <p className="text-muted-foreground">Manage and view all teachers</p>
+          <h1 className="text-3xl font-bold tracking-tight">Parents</h1>
+          <p className="text-muted-foreground">Manage and view all parents</p>
         </div>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Add Teacher
+              Add Parent
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <User className="h-5 w-5" />
-                Add New Teacher
+                Add New Parent
               </DialogTitle>
               <DialogDescription>
-                Enter the email address of the new teacher to send them an invitation.
+                Enter the email address of the new parrent to send them an invitation.
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
@@ -135,13 +135,13 @@ export default function TeachersComponent() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="teacher@school.edu"
-                    value={newTeacherEmail}
-                    onChange={(e) => setNewTeacherEmail(e.target.value)}
+                    placeholder="parrent@school.edu"
+                    value={newParentEmail}
+                    onChange={(e) => setNewParentEmail(e.target.value)}
                     className="pl-10"
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
-                        handleAddTeacher()
+                        handleAddParent()
                       }
                     }}
                   />
@@ -152,13 +152,13 @@ export default function TeachersComponent() {
               <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancel
               </Button>
-              <Button type="button" onClick={handleAddTeacher} disabled={loadingAddTeacher}>
-                {loadingAddTeacher ? (
+              <Button type="button" onClick={handleAddParent} disabled={loadingAddParent}>
+                {loadingAddParent ? (
                   <div className="flex items-center justify-center gap-4">
                       Loading... <LoadingSpinner />
                     </div>
                 )
-                 : "Add Teacher"}
+                 : "Add Parent"}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -169,14 +169,14 @@ export default function TeachersComponent() {
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Search teachers..."
+          placeholder="Search parents..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="pl-10"
         />
       </div>
 
-      {/* Teachers Table */}
+      {/* Parents Table */}
       <div className="border rounded-lg">
         <Table>
           <TableHeader>
@@ -188,19 +188,19 @@ export default function TeachersComponent() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredTeachers.length > 0 ? (
-              filteredTeachers.map((teacher) => (
-                <TableRow key={teacher.id}>
-                  <TableCell className="font-medium">{teacher.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{teacher.email}</TableCell>
-                  <TableCell>{teacher.subject}</TableCell>
-                  <TableCell>{teacher.joinDate}</TableCell>
+            {filteredParents.length > 0 ? (
+              filteredParents.map((parrent) => (
+                <TableRow key={parrent.id}>
+                  <TableCell className="font-medium">{parrent.name}</TableCell>
+                  <TableCell className="text-muted-foreground">{parrent.email}</TableCell>
+                  <TableCell>{parrent.subject}</TableCell>
+                  <TableCell>{parrent.joinDate}</TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
                 <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
-                  {searchTerm ? "No teachers found matching your search." : "No teachers found."}
+                  {searchTerm ? "No parents found matching your search." : "No parents found."}
                 </TableCell>
               </TableRow>
             )}
@@ -210,7 +210,7 @@ export default function TeachersComponent() {
 
       {/* Summary */}
       <div className="text-sm text-muted-foreground">
-        Showing {filteredTeachers.length} of {teachers.length} teachers
+        Showing {filteredParents.length} of {parents.length} parents
       </div>
     </div>
   )

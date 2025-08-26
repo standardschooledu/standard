@@ -56,6 +56,7 @@ export default function LoginPage() {
                   const data = await loginUser(email, password);
                   // set the user state
                   useAuthStore.getState().setUser(data.user);
+                  console.log(data.user)
                   setLoading(false);
                 }}
                 id="login-form"

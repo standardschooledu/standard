@@ -18,6 +18,7 @@ import {
   Bell,
   CreditCard,
   LucideProps,
+  User,
 } from "lucide-react"
 
 import {
@@ -108,15 +109,17 @@ export function AppSidebar({menuItems}: Props) {
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground bg-gray-200"
                 >
                   <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Admin" />
-                    <AvatarFallback className="rounded-lg">AD</AvatarFallback>
+                    {/* <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Admin" /> */}
+                    <User />
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-semibold">{user?.email}</span>
-                    <span className="truncate text-xs">School Administrator</span>
+                    <span className="truncate text-xs">
+                      {user?.role.charAt(0).toUpperCase() + user?.role.slice(1)}
+                    </span>
                   </div>
                   <ChevronUp className="ml-auto size-4" />
                 </SidebarMenuButton>

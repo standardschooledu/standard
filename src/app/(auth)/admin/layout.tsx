@@ -30,7 +30,12 @@ const menuItems = [
     title: "Teachers",
     url: "/admin/teachers",
     icon: <Users />,
-  }
+  },
+  {
+    title: "parents",
+    url: "/admin/parent",
+    icon: <Users />,
+  },
 ]
 
 
