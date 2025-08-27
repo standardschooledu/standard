@@ -40,7 +40,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
           .eq('user_id', session.user.id)
           .single()
 
-        if (error || !data) {
+        if ((error || !data) && pathname !== '/teacher/form') {
           console.error(error)
           router.replace('/teacher/form')
           setAuthChecked(false)
