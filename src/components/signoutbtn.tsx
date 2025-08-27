@@ -17,7 +17,7 @@ const Signoutbtn = () => {
       };
       
   return (
-    <Button className="w-full rounded" onClick={handleSignOut}>Sign out</Button>
+    <Button className="w-full rounded" variant={'outline'} onClick={handleSignOut}>Sign out</Button>
   )
 }
 

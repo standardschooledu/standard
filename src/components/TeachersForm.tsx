@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle, Trash2 } from "lucide-react";
+import Signoutbtn from "./signoutbtn";
 
 export default function TeacherForm() {
   const { session } = useAuth();
@@ -231,7 +232,7 @@ export default function TeacherForm() {
       )}
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between my-6">
         {step > 1 && (
           <Button variant="outline" onClick={prevStep}>
             Back
@@ -245,6 +246,7 @@ export default function TeacherForm() {
           </Button>
         )}
       </div>
+      <Signoutbtn />
     </div>
   );
 }
