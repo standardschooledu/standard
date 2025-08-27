@@ -1,9 +1,9 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Poppins } from "next/font/google" // Changed font import
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] }) // Use desired weights
 
 export const metadata: Metadata = {
   title: "Standard School - Excellence in Education",
@@ -20,7 +20,7 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}> {/* Changed to poppins */}
         {children}
       </body>
     </html>

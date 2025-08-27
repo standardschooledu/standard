@@ -10,29 +10,40 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { GraduationCap } from "lucide-react";
+import { Eye, EyeClosed, EyeOff, GraduationCap, Info, Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { loginUser } from "@/lib/auth";
 import AuthGuard from "@/components/AuthGuard";
 import LoadingSpinner from "@/components/loader";
 import { useAuthStore } from "@/store/useStore";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
 
 
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
+          {/* Back Button */}
+          <button
+            type="button"
+            onClick={() => router.push("/")}
+            className="mb-4 px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-700"
+          >
+            ← Back
+          </button>
           {/* School Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <div className="bg-primary p-3 rounded-full">
-                <GraduationCap className="h-8 w-8 text-white" />
-              </div>
+              <Image src={'/images/school_logo_enhanced_brightness.png'} width={500} height={500} alt="school logo" className="h-32 w-32" />
             </div>
             <h1 className="text-2xl font-bold text-slate-900">
               Standard School
@@ -53,58 +64,85 @@ export default function LoginPage() {
                 onSubmit={async (e) => {
                   e.preventDefault();
                   setLoading(true);
-                  const data = await loginUser(email, password);
+                  try {
+                    const data = await loginUser(email, password);
                   // set the user state
                   useAuthStore.getState().setUser(data.user);
                   console.log(data.user)
+                  } catch(err: any){
+                    // alert(err.message)
+                    setError(err.message)
+                  }
                   setLoading(false);
                 }}
                 id="login-form"
                 className="space-y-4"
               >
+                {
+                  error ? 
+                  <div className="text-red-500 border-red-500 border rounded p-2 text-sm flex items-center gap-3">
+                    <Info className="w-4" />
+                    <span>error: {error}</span>
+                  </div> : null
+                }
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    value={email}
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="user@gmail.com"
-                    required
-                  />
+                  <div className="relative">
+                      <Mail className="text-gray-400 w-4 absolute left-2 top-[8px]" />
+                      <Input
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setError(null)
+                        }}
+                        value={email}
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="user@gmail.com"
+                        className="py-5 px-8 rounded"
+                        required
+                      />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
-                  <Input
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                    value={password}
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    required
-                  />
+                  <div className="relative">
+                      <Lock className="text-gray-400 w-4 absolute left-2 top-[8px]" />
+                      <Input
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setError(null)
+                      }}
+                      value={password}
+                      id="password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      className="py-5 px-8 rounded"
+                      placeholder="Enter your password"
+                      required
+                    />
+                    <button type="button" onClick={() => setShowPassword(prev => !prev)}>
+                      {
+                        showPassword ? <Eye className="text-gray-400 w-4 absolute right-2 top-[8px]" /> : <EyeOff className="text-gray-400 w-4 absolute right-2 top-[8px]" />
+                      }
+                    </button>
+                  </div>
                 </div>
 
-                <div className="flex items-center space-x-2">
+                {/* <div className="flex items-center space-x-2">
                   <Checkbox id="remember" />
                   <Label
                     htmlFor="remember"
-                    className="text-sm font-normal cursor-pointer"
+                    className="text-[12px] font-normal cursor-pointer text-gray-600"
                   >
                     Remember me on this device
                   </Label>
-                </div>
+                </div> */}
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary"
+                  className="w-full bg-primary hover:bg-primary rounded"
                   disabled={loading}
                 >
                   {loading ? (
