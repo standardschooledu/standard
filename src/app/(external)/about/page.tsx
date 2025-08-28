@@ -6,7 +6,7 @@ import { GraduationCap, Heart, Target, Lightbulb, Users, BookOpen } from "lucide
 export default function Component() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header/Hero Section */}
+      {/* Header/Hero Section */ }
       <section className="relative bg-gradient-to-br from-yellow-50 to-gray-50 py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -15,9 +15,9 @@ export default function Component() {
                 Excellence in Education Since Our Foundation
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                About <span className="text-yellow-600">Standard School</span>
+                About <span className="text-yellow-600">Standard School</span> Rara
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="justify-center text-xl text-gray-600 leading-relaxed">
                 Founded on the principles of discipline, innovation, and character-building, 
                 Standard School provides a solid foundation from Early Years through Secondary Education. 
                 Our curriculum combines national standards with global best practices, ensuring pupils develop 

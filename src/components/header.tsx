@@ -133,10 +133,10 @@ const Header = () => {
           <div className="mt-8 pt-6 border-t border-gray-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Contact Us</h3>
             <div className="space-y-2 text-sm text-gray-600">
-              <p><a href="mailto:info@standardschool.edu.ng"></a>📧 info@standardschool.edu.ng</p>
-              <p><a href="+2348034570167">📞 +234 8034570167,</a></p>
-              <p><a href="+2347053793037">📞 +234 7053793037</a></p>
-              <p>📍 Moro, Osun State</p>
+              <p><a href="mailto:standardshs2017@gmail.com"></a>📧 standardshs2017@gmail.com</p>
+              <p><a href="+2347068777735">📞 +234 7068777735,</a></p>
+              <p><a href="+2348139345775">📞 +234 8139345775</a></p>
+              <p>📍 Rara Road, Ife North West, Osun State.</p>
             </div>
           </div>
 

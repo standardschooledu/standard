@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
+import Link from "next/link"
 
 export default function ContactPage() {
   return (
@@ -56,7 +57,7 @@ export default function ContactPage() {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="(555) 123-4567"
+                    placeholder="(+234) 706 877 7735"
                     className="border-amber-200 focus:border-amber-500"
                   />
                 </div>
@@ -91,7 +92,7 @@ export default function ContactPage() {
             <Card className="bg-gradient-to-br from-white/95 to-amber-50/90 backdrop-blur-sm border-0 shadow-xl">
               <CardHeader>
                 <CardTitle className="text-xl sm:text-2xl text-gray-800">Standard School</CardTitle>
-                <CardDescription className="text-amber-700">Excellence in Education Since 1985</CardDescription>
+                <CardDescription className="text-amber-700">Excellence in Education Since 1998</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-start space-x-3 sm:space-x-4">
@@ -101,11 +102,11 @@ export default function ContactPage() {
                   <div className="min-w-0 flex-1">
                     <h3 className="font-semibold text-gray-800 text-sm sm:text-base">Address</h3>
                     <p className="text-gray-600 text-sm sm:text-base">
-                      123 Education Boulevard
+                      Standard High School, Rara Road
                       <br />
-                      Learning District, LD 12345
+                      Ife North West Local Government, 
                       <br />
-                      United States
+                      Osun State, Nigeria.
                     </p>
                   </div>
                 </div>
@@ -117,11 +118,11 @@ export default function ContactPage() {
                   <div className="min-w-0 flex-1">
                     <h3 className="font-semibold text-gray-800 text-sm sm:text-base">Phone Numbers</h3>
                     <p className="text-gray-600 text-sm sm:text-base">
-                      Main Office: (555) 123-4567
+                      {/* Main Office: (555) 123-4567 */}
+                      {/* <br /> */}
+                      Admissions: (+234) 706 877 7735
                       <br />
-                      Admissions: (555) 123-4568
-                      <br />
-                      Emergency: (555) 123-4569
+                      Emergency: (+234) 813 934 5775
                     </p>
                   </div>
                 </div>
@@ -133,11 +134,11 @@ export default function ContactPage() {
                   <div className="min-w-0 flex-1">
                     <h3 className="font-semibold text-gray-800 text-sm sm:text-base">Email Addresses</h3>
                     <p className="text-gray-600 text-sm sm:text-base">
-                      General: info@standardschool.edu
+                      General: standardshs2017@gmail.com
                       <br />
-                      Admissions: admissions@standardschool.edu
+                      Admissions: standardshs2017@gmail.com
                       <br />
-                      Support: support@standardschool.edu
+                      Support: standardshs2017@gmail.com
                     </p>
                   </div>
                 </div>
@@ -167,18 +168,22 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  <Button
-                    variant="outline"
-                    className="justify-start border-amber-200 hover:bg-amber-50 bg-transparent text-sm sm:text-base"
-                  >
-                    Admissions
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="justify-start border-amber-200 hover:bg-amber-50 bg-transparent text-sm sm:text-base"
-                  >
-                    Academic Programs
-                  </Button>
+                  <Link href="/enroll">
+                    <Button
+                      variant="outline"
+                      className="justify-start border-amber-200 hover:bg-amber-50 bg-transparent text-sm sm:text-base"
+                    >
+                      Admissions
+                    </Button>
+                  </Link>
+                  <Link href="/academics">
+                    <Button
+                      variant="outline"
+                      className="justify-start border-amber-200 hover:bg-amber-50 bg-transparent text-sm sm:text-base"
+                    >
+                      Academic Programs
+                    </Button>
+                  </Link>
                   <Button
                     variant="outline"
                     className="justify-start border-amber-200 hover:bg-amber-50 bg-transparent text-sm sm:text-base"
@@ -213,23 +218,23 @@ export default function ContactPage() {
         {/* Emergency Contact Section */}
         <Card className="mt-8 sm:mt-12 bg-gradient-to-r from-amber-50 to-gray-100 border-amber-300">
           <CardHeader className="p-4 sm:p-6">
-            <CardTitle className="text-gray-800 text-lg sm:text-xl">Emergency Contact Information</CardTitle>
+            <CardTitle className="text-center text-gray-800 text-lg sm:text-xl">Emergency Contact Information</CardTitle>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="text-center">
                 <h3 className="font-semibold text-amber-700 mb-2 text-sm sm:text-base">Medical Emergency</h3>
                 <p className="text-gray-700 text-sm sm:text-base">Call 911 immediately</p>
-                <p className="text-xs sm:text-sm text-amber-600">Then notify school: (555) 123-4569</p>
+                <p className="text-xs sm:text-sm text-amber-600">Then notify school: (+234) 813 934 5775</p>
               </div>
               <div className="text-center">
                 <h3 className="font-semibold text-amber-700 mb-2 text-sm sm:text-base">School Emergency</h3>
-                <p className="text-gray-700 text-sm sm:text-base">(555) 123-4569</p>
+                <p className="text-gray-700 text-sm sm:text-base">(+234) 813 934 5775</p>
                 <p className="text-xs sm:text-sm text-amber-600">Available 24/7</p>
               </div>
               <div className="text-center">
                 <h3 className="font-semibold text-amber-700 mb-2 text-sm sm:text-base">After Hours</h3>
-                <p className="text-gray-700 text-sm sm:text-base">emergency@standardschool.edu</p>
+                <p className="text-gray-700 text-sm sm:text-base">standardshs2017@gmail.com</p>
                 <p className="text-xs sm:text-sm text-amber-600">Response within 2 hours</p>
               </div>
             </div>
