@@ -1,4 +1,4 @@
-import { supabase } from "./supaBaseClient";
+import { supabase } from "./supabaseClient";
 
 type Teacher = {
   first_name: string;

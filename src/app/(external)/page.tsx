@@ -73,7 +73,7 @@ export default function Home() {
                 <span className="text-primary"> Leaders</span>
               </h1>
               <p className="text-lg text-gray-500 max-w-lg">
-                At Standard School, we provide world-class education that
+                At Standard School Rara, we provide world-class education that
                 nurtures academic excellence, character development, and
                 prepares students for success in an ever-changing world.
               </p>

@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeClosed, EyeOff, GraduationCap, Info, Lock, Mail } from "lucide-react";
 import { useState } from "react";
-import { loginUser } from "@/lib/auth";
+import { login } from "@/lib/auth";
 import AuthGuard from "@/components/AuthGuard";
 import LoadingSpinner from "@/components/loader";
 import Image from "next/image"
@@ -69,15 +69,21 @@ export default function LoginPage() {
                 onSubmit={async (e) => {
                   e.preventDefault();
                   setLoading(true);
+
                   try {
-                    const data = await loginUser(email, password);
-                  // set the user state
-                  useAuthStore.getState().setUser(data.user);
-                  console.log(data.user)
-                  } catch(err: any){
-                    // alert(err.message)
-                    setError(err.message)
+                    const user = await login(email, password);
+
+                    if (user) {
+                      // ✅ directly set user, no .user
+                      useAuthStore.getState().setUser(user);
+                      console.log(user);
+                    } else {
+                      setError("Invalid login credentials");
+                    }
+                  } catch (err: any) {
+                    setError(err.message);
                   }
+
                   setLoading(false);
                 }}
                 id="login-form"

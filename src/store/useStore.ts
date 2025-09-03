@@ -1,21 +1,18 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from "zustand"
+
+type User = {
+  email: string
+  role: string
+} | null
 
 type AuthState = {
-  user: any;
-  setUser: (user: any) => void;
-  logout: () => void;
-};
+  user: User
+  setUser: (user: User) => void
+  signOut: () => void   // ✅ add signOut here
+}
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      user: null,
-      setUser: (user) => set({ user }),
-      logout: () => set({ user: null }),
-    }),
-    {
-      name: "auth-storage", // key in localStorage
-    }
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+  signOut: () => set({ user: null }), // ✅ implementation
+}))

@@ -1,4 +1,4 @@
-import { supabase } from "./supaBaseClient";
+import { supabase } from "./supabaseClient";
 
 export async function getUserRole(email: string) {
   try {

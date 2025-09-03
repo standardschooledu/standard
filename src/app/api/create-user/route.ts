@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Email and account_type are required" }, { status: 400 })
   }
 
-  const validAccountTypes = ["teachers", "parents", "admins"]
+  const validAccountTypes = ["teachers", "parents", "admins", "students"]
   if (!validAccountTypes.includes(account_type)) {
     return NextResponse.json({ error: "Invalid account_type" }, { status: 400 })
   }

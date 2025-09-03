@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
-import { BarChart3, Bell, BookOpen, Calendar, CreditCard, FileText, GraduationCap, Home, MessageSquare, Settings, Users } from 'lucide-react';
+import { BarChart3, Bell, BookOpen, Calendar, CreditCard, FileText, GraduationCap, Home, MessageSquare, School, Settings, Users } from 'lucide-react';
 
 // Menu items
 const menuItems = [
@@ -34,6 +34,12 @@ const menuItems = [
   {
     title: "parents",
     url: "/admin/parent",
+    icon: <Users />,
+  },
+  {
+    title: "students",
+    // url: "@/components/student-dashboard",
+    url: "/admin/students",
     icon: <Users />,
   },
 ]

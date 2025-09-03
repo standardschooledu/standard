@@ -1,7 +1,5 @@
 "use client"
 
-
-import { signOutUser } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
@@ -18,7 +16,6 @@ import {
   BarChart3,
   Bell,
   CreditCard,
-  LucideProps,
   User,
 } from "lucide-react"
 
@@ -34,7 +31,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+import { Avatar } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ChevronUp, User2 } from "lucide-react"
 import { Button } from "./ui/button";
@@ -52,19 +50,16 @@ type Props = {
   menuItems: MenuItem[];
 };
 
+export function AppSidebar({ menuItems }: Props) {
+  const router = useRouter();
+  const user = useAuthStore((state) => state.user)
+  const signOut = useAuthStore((state) => state.signOut) // ✅ use store logout
 
-export function AppSidebar({menuItems}: Props) {
-     const router = useRouter();
-     const user = useAuthStore(state => state.user)
+  const handleSignOut = () => {
+    signOut()
+    router.replace("/login")
+  }
 
-    const handleSignOut = async () => {
-    try {
-      await signOutUser();
-      router.replace("/login"); // Optional redirect after logout
-    } catch (err: any) {
-      alert("Failed to log out: " + err.message);
-    }
-  };
   return (
     <Sidebar>
       <SidebarHeader>
@@ -84,6 +79,7 @@ export function AppSidebar({menuItems}: Props) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>School Management</SidebarGroupLabel>
@@ -103,6 +99,7 @@ export function AppSidebar({menuItems}: Props) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -113,18 +110,18 @@ export function AppSidebar({menuItems}: Props) {
                   className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground bg-gray-200"
                 >
                   <Avatar className="h-8 w-8 rounded-lg">
-                    {/* <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Admin" /> */}
                     <User />
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-semibold">{user?.email}</span>
                     <span className="truncate text-xs">
-                      {user?.role.charAt(0).toUpperCase() + user?.role.slice(1)}
+                      {user?.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : ""}
                     </span>
                   </div>
                   <ChevronUp className="ml-auto size-4" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
+
               <DropdownMenuContent
                 className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
                 side="bottom"
@@ -140,7 +137,7 @@ export function AppSidebar({menuItems}: Props) {
                   Settings
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                    <Button className="w-full rounded" onClick={handleSignOut}>Sign out</Button>
+                  <Button className="w-full rounded" onClick={handleSignOut}>Sign out</Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
