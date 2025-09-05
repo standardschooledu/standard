@@ -76,7 +76,6 @@ export function AppSidebar({menuItems}: Props) {
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Standard School</span>
-                  <span className="truncate text-xs">Admin Portal</span>
                 </div>
               </div>
             </SidebarMenuButton>
@@ -85,7 +84,6 @@ export function AppSidebar({menuItems}: Props) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>School Management</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
