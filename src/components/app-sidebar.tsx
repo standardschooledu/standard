@@ -3,6 +3,14 @@
 import { useRouter } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
+// import { useAuthStore } from "@/store/auth";
+import { Avatar } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { ChevronUp, User2 } from "lucide-react"
+import { Button } from "./ui/button";
+import Link from "next/link";
+import { JSX } from "react";
+import { useAuthStore } from "@/store/useStore";
 
 import {
   BookOpen,
@@ -31,14 +39,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-
-import { Avatar } from "@/components/ui/avatar"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { ChevronUp, User2 } from "lucide-react"
-import { Button } from "./ui/button";
-import Link from "next/link";
-import { JSX } from "react";
-import { useAuthStore } from "@/store/useStore";
 
 type MenuItem = {
   title: string;

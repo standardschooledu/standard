@@ -46,51 +46,51 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto mx-4">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <User className="h-5 w-5" />
-            {student.name} - Detailed Information
+          <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl">
+            <User className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="truncate">{student.name} - Detailed Information</span>
           </DialogTitle>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Basic Information */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                 <GraduationCap className="h-4 w-4" />
                 Student Information
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between">
-                <span className="font-medium">Student ID:</span>
-                <span>{student.id}</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Student ID:</span>
+                <span className="text-sm sm:text-base">{student.id}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Class:</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Class:</span>
                 <Badge variant="outline">{student.class}</Badge>
               </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Age:</span>
-                <span>{student.age} years</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Age:</span>
+                <span className="text-sm sm:text-base">{student.age} years</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Status:</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Status:</span>
                 <Badge variant={student.status === "active" ? "default" : "secondary"}>{student.status}</Badge>
               </div>
               {student.stream && (
-                <div className="flex justify-between">
-                  <span className="font-medium">Stream:</span>
+                <div className="flex justify-between items-center">
+                  <span className="font-medium text-sm sm:text-base">Stream:</span>
                   <Badge className={getStreamBadgeColor(student.stream)}>
                     {student.stream.charAt(0).toUpperCase() + student.stream.slice(1)}
                   </Badge>
                 </div>
               )}
-              <div className="flex justify-between">
-                <span className="font-medium">Enrollment Date:</span>
-                <span>{new Date(student.enrollmentDate).toLocaleDateString()}</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Enrollment Date:</span>
+                <span className="text-sm sm:text-base">{new Date(student.enrollmentDate).toLocaleDateString()}</span>
               </div>
             </CardContent>
           </Card>
@@ -98,38 +98,38 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
           {/* Contact Information */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                 <Phone className="h-4 w-4" />
                 Contact Information
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-gray-500" />
-                <span className="text-sm">{student.email}</span>
+                <Mail className="h-4 w-4 text-gray-500 flex-shrink-0" />
+                <span className="text-sm sm:text-base break-all">{student.email}</span>
               </div>
               <Separator />
               <div>
-                <h4 className="font-medium mb-2">Parent/Guardian</h4>
+                <h4 className="font-medium mb-2 text-sm sm:text-base">Parent/Guardian</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2">
-                    <User className="h-3 w-3 text-gray-500" />
-                    <span>{student.parentContact.name}</span>
+                    <User className="h-3 w-3 text-gray-500 flex-shrink-0" />
+                    <span className="break-words">{student.parentContact.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Phone className="h-3 w-3 text-gray-500" />
-                    <span>{student.parentContact.phone}</span>
+                    <Phone className="h-3 w-3 text-gray-500 flex-shrink-0" />
+                    <span className="break-all">{student.parentContact.phone}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Mail className="h-3 w-3 text-gray-500" />
-                    <span>{student.parentContact.email}</span>
+                    <Mail className="h-3 w-3 text-gray-500 flex-shrink-0" />
+                    <span className="break-all">{student.parentContact.email}</span>
                   </div>
                 </div>
               </div>
               <Separator />
               <div className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
-                <span className="text-sm">{student.address}</span>
+                <MapPin className="h-4 w-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                <span className="text-sm sm:text-base break-words">{student.address}</span>
               </div>
             </CardContent>
           </Card>
@@ -137,7 +137,7 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
           {/* Academic Results */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                 <BookOpen className="h-4 w-4" />
                 Academic Results
               </CardTitle>
@@ -146,8 +146,8 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
               <div className="space-y-2">
                 {student.results.map((result, index) => (
                   <div key={index} className="flex justify-between items-center p-2 rounded-lg bg-gray-50">
-                    <span className="font-medium text-sm">{result.subject}</span>
-                    <div className="flex items-center gap-2">
+                    <span className="font-medium text-sm truncate flex-1 mr-2">{result.subject}</span>
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       <span className="text-sm">{result.score}%</span>
                       <Badge className={getGradeColor(result.grade)} variant="secondary">
                         {result.grade}
@@ -158,8 +158,8 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
               </div>
               <Separator className="my-3" />
               <div className="flex justify-between items-center font-medium">
-                <span>Overall Average:</span>
-                <Badge variant="outline" className="text-base">
+                <span className="text-sm sm:text-base">Overall Average:</span>
+                <Badge variant="outline" className="text-sm sm:text-base">
                   {student.grade}%
                 </Badge>
               </div>
@@ -169,29 +169,31 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
           {/* Fees Information */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                 <DollarSign className="h-4 w-4" />
                 Fees Information
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between">
-                <span className="font-medium">Tuition Fee:</span>
-                <span>₦{student.fees.tuition.toLocaleString()}</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Tuition Fee:</span>
+                <span className="text-sm sm:text-base">₦{student.fees.tuition.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Amount Paid:</span>
-                <span className="text-green-600">₦{student.fees.paid.toLocaleString()}</span>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Amount Paid:</span>
+                <span className="text-green-600 text-sm sm:text-base">₦{student.fees.paid.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Balance:</span>
-                <span className={student.fees.balance > 0 ? "text-red-600" : "text-green-600"}>
+              <div className="flex justify-between items-center">
+                <span className="font-medium text-sm sm:text-base">Balance:</span>
+                <span
+                  className={`text-sm sm:text-base ${student.fees.balance > 0 ? "text-red-600" : "text-green-600"}`}
+                >
                   ₦{student.fees.balance.toLocaleString()}
                 </span>
               </div>
               <Separator />
               <div className="flex justify-between items-center">
-                <span className="font-medium">Due Date:</span>
+                <span className="font-medium text-sm sm:text-base">Due Date:</span>
                 <div className="flex items-center gap-1">
                   <Calendar className="h-3 w-3 text-gray-500" />
                   <span className="text-sm">{new Date(student.fees.dueDate).toLocaleDateString()}</span>
@@ -209,12 +211,12 @@ export function StudentDetailsModal({ student, isOpen, onClose }: StudentDetails
         {/* Subjects */}
         <Card>
           <CardHeader>
-            <CardTitle>Enrolled Subjects</CardTitle>
+            <CardTitle className="text-base sm:text-lg">Enrolled Subjects</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
               {student.subjects.map((subject, index) => (
-                <Badge key={index} variant="outline">
+                <Badge key={index} variant="outline" className="text-xs sm:text-sm">
                   {subject}
                 </Badge>
               ))}

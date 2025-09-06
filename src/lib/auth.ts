@@ -3,7 +3,7 @@ export interface User {
   id: string
   email: string
   name: string
-  role: "admin" | "student"
+  role: string
 }
 
 export interface Student {
@@ -38,14 +38,24 @@ export interface Student {
   address: string
 }
 
-// Mock admin credentials
+// // Mock admin credentials
+// const MOCK_ADMIN = {
+//   id: "1",
+//   email: "admin@school.edu",
+//   name: "Admin User",
+//   role: "admin" as const,
+//   password: "admin123",
+// }
+
 const MOCK_ADMIN = {
-  id: "1",
-  email: "admin@school.edu",
+  id: "c529a0fd-70d6-42af-9076-a89f38940c07",
+  email: "olaleye349@gmail.com",
+  password: "12345678",
   name: "Admin User",
-  role: "admin" as const,
-  password: "admin123",
+  // role: "admin" | "student",
+  role: "admin",
 }
+
 
 export const MOCK_STUDENTS: Student[] = [
   // Early Years (Creche, KG1, KG2, Nursery 1, Nursery 2)
@@ -151,6 +161,153 @@ export const MOCK_STUDENTS: Student[] = [
     fees: { tuition: 190000, paid: 190000, balance: 0, dueDate: "2024-12-15" },
     parentContact: { name: "Mrs. Adebisi", phone: "08067890123", email: "mrs.adebisi@email.com" },
     address: "56 Surulere, Lagos",
+  },
+   {
+    id: "17",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
+  },
+   {
+    id: "18",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
+  },
+   {
+    id: "19",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
+  },
+   {
+    id: "20",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
+  },
+   {
+    id: "21",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
+  },
+   {
+    id: "22",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
+  },
+   {
+    id: "23",
+    name: "Fatima Abdullahi",
+    email: "fatima.abdullahi@school.edu",
+    class: "KG2",
+    grade: 92,
+    age: 5,
+    enrollmentDate: "2023-09-01",
+    status: "active",
+    educationalLevel: "early-years",
+    subjects: ["Reading", "Writing", "Mathematics", "Social Studies"],
+    results: [
+      { subject: "Reading", score: 95, grade: "A" },
+      { subject: "Writing", score: 88, grade: "B+" },
+      { subject: "Mathematics", score: 92, grade: "A" },
+      { subject: "Social Studies", score: 90, grade: "A" },
+    ],
+    fees: { tuition: 200000, paid: 200000, balance: 0, dueDate: "2024-12-15" },
+    parentContact: { name: "Alhaji Abdullahi", phone: "08034567890", email: "abdullahi@email.com" },
+    address: "78 Garki, Abuja",
   },
 
   // Primary (Primary 1-6)
@@ -628,20 +785,40 @@ export const MOCK_STUDENTS: Student[] = [
   },
 ]
 
-export const login = async (email: string, password: string): Promise<User | null> => {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+import { createClient } from "@supabase/supabase-js"
 
-  if (email === MOCK_ADMIN.email && password === MOCK_ADMIN.password) {
-    return {
-      id: MOCK_ADMIN.id,
-      email: MOCK_ADMIN.email,
-      name: MOCK_ADMIN.name,
-      role: MOCK_ADMIN.role,
-    }
+// 👇 Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+export const login = async (email: string, password: string) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  })
+
+  if (error) {
+    console.error("Login error:", error.message)
+    return null
   }
 
-  return null
+  // ✅ Supabase gives you both user + session
+  return {
+    id: data.user?.id ?? "",
+    email: data.user?.email ?? "",
+    name: data.user?.user_metadata?.name ?? "", // depends on how you stored it
+    role: data.user?.user_metadata?.role ?? "admin", // fallback role
+  }
+}
+
+export const signOutUser = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) {
+    console.error("Logout error:", error.message)
+    throw error
+  }
 }
 
 export const getStudents = async (): Promise<Student[]> => {
