@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Plus, FileText, Calendar, Bell } from "lucide-react"
+import Link from "next/link"
 
 const actions = [
   {
@@ -29,7 +30,17 @@ const actions = [
   },
 ]
 
-export function QuickActions() {
+interface QuickActionProps {
+  onQuickActionClick: () => void
+}
+
+
+export function QuickActions( { onQuickActionClick }: QuickActionProps) {
+  const action = {
+    title: "Add Student",
+    description: "Quickly add a new student",
+    // icon: SomeIcon, // replace with your icon
+  }
   return (
     <Card>
       <CardHeader>
@@ -38,7 +49,7 @@ export function QuickActions() {
       </CardHeader>
       <CardContent className="grid gap-3">
         {actions.map((action) => (
-          <Button key={action.title} variant='outline' className="justify-start h-auto p-4">
+          <Button  key={action.title} variant='outline' className="justify-start h-auto p-4" onClick={onQuickActionClick}>
             <action.icon className="mr-3 h-4 w-4" />
             <div className="text-left">
               <div className="font-medium">{action.title}</div>
