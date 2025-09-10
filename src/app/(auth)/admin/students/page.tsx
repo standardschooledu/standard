@@ -102,7 +102,7 @@ export default function StudentDashboard() {
     let filtered = searchStudents(students, searchQuery)
 
     if (selectedClass !== "all") {
-      filtered = filtered.filter((student) => student.class === selectedClass)
+      filtered = filtered.filter((student) => student.class_id === selectedClass)
     }
     if (selectedStatus !== "all") {
       filtered = filtered.filter((student) => student.status === selectedStatus)
@@ -132,7 +132,7 @@ export default function StudentDashboard() {
 
   const getInitials = (name: string) =>
     name
-      .split(" ")
+      ?.split(" ")
       .map((n) => n[0])
       .join("")
       .toUpperCase()
@@ -161,7 +161,7 @@ export default function StudentDashboard() {
     total: students.length,
     active: students.filter((s) => s.status === "active").length,
     inactive: students.filter((s) => s.status === "inactive").length,
-    averageGrade: Math.round(students.reduce((acc, s) => acc + s.grade, 0) / students.length) || 0,
+    averageGrade: Math.round(students.reduce((acc, s) => acc + s.grade!, 0) / students.length) || 0,
   }
 
   const groupedStudents = groupStudentsByEducationalLevel(filteredStudents)
@@ -215,8 +215,8 @@ export default function StudentDashboard() {
         {/* Students */}
         {Object.entries(groupedStudents).map(([level, levelStudents]) => {
           const studentsByClass = levelStudents.reduce((acc, student) => {
-            if (!acc[student.class]) acc[student.class] = []
-            acc[student.class].push(student)
+            if (!acc[student.class_id]) acc[student.class_id] = []
+            acc[student.class_id].push(student)
             return acc
           }, {} as Record<string, Student[]>)
 
@@ -238,20 +238,20 @@ export default function StudentDashboard() {
                         <Card key={student.id} className="hover:shadow-lg cursor-pointer" onClick={() => handleStudentClick(student)}>
                           <CardContent className="p-4">
                             <div className="flex items-start gap-3">
-                              <Avatar className="h-10 w-10"><AvatarFallback>{getInitials(student.name)}</AvatarFallback></Avatar>
+                              <Avatar className="h-10 w-10"><AvatarFallback>{getInitials(student?.name)}</AvatarFallback></Avatar>
                               <div className="flex-1">
-                                <h3 className="font-semibold truncate">{student.name}</h3>
+                                <h3 className="font-semibold truncate">{student?.name}</h3>
                                 <div className="mt-2 space-y-1 text-sm">
                                   <div className="flex justify-between">
-                                    <span>Class:</span><Badge>{student.class}</Badge>
+                                    <span>Class:</span><Badge>{student?.class_id}</Badge>
                                   </div>
                                   <div className="flex justify-between">
-                                    <span>Grade:</span><Badge className={getGradeColor(student.grade)}>{student.grade}%</Badge>
+                                    <span>Grade:</span><Badge className={getGradeColor(student.grade!)}>{student.grade}%</Badge>
                                   </div>
                                   <div className="flex justify-between">
                                     <span>Fees:</span>
-                                    <Badge variant={student.fees.balance > 0 ? "destructive" : "default"}>
-                                      {student.fees.balance > 0 ? "Outstanding" : "Paid"}
+                                    <Badge variant={student.fees?.balance > 0 ? "destructive" : "default"}>
+                                      {student.fees?.balance > 0 ? "Outstanding" : "Paid"}
                                     </Badge>
                                   </div>
                                   <div

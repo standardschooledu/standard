@@ -23,6 +23,7 @@ export interface Student {
   address: string
   status: string              // <-- add
   grade?: number
+  age: any
   parentName: string
   parentContact: ParentContact
   educationalLevel: "early-years" | "primary" | "junior-secondary" | "senior-secondary"
