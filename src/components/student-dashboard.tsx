@@ -11,7 +11,6 @@ import {
   groupStudentsByEducationalLevel,
   getEducationalLevelDisplayName,
   getStreamDisplayName,
-  type Student,
 } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -22,6 +21,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { StudentDetailsModal } from "@/components/student-details-modal"
 import { AddStudentModal } from "@/components/add-student-modal"
 import { Search, LogOut, Users, GraduationCap, Filter, TrendingUp, UserCheck, UserX, Eye, Plus } from "lucide-react"
+import { supabase } from "@/lib/supabaseClient"
+import type { Student } from "@/types/student"
+import { calculateAge } from "@/utils/date"
 
 export function StudentDashboard() {
   const { user, logout } = useAuth()
@@ -64,7 +66,7 @@ export function StudentDashboard() {
     let filtered = searchStudents(students, searchQuery)
 
     if (selectedClass !== "all") {
-      filtered = filtered.filter((student) => student.class === selectedClass)
+      filtered = filtered.filter((student) => student.class_id === selectedClass)
     }
 
     if (selectedStatus !== "all") {
@@ -103,6 +105,14 @@ export function StudentDashboard() {
       .toUpperCase()
   }
 
+  // student-dashboard.tsx
+
+
+
+  // const age = new Date().getFullYear() - new Date(students.map(student => student.dateOfBirth)).getFullYear();
+  
+
+
   const getGradeColor = (grade: number) => {
     if (grade >= 90) return "bg-green-100 text-green-800"
     if (grade >= 80) return "bg-blue-100 text-blue-800"
@@ -127,7 +137,11 @@ export function StudentDashboard() {
     total: students.length,
     active: students.filter((s) => s.status === "active").length,
     inactive: students.filter((s) => s.status === "inactive").length,
-    averageGrade: Math.round(students.reduce((acc, s) => acc + s.grade, 0) / students.length) || 0,
+    // averageGrade: Math.round(students.reduce((acc, s) => acc + s.grade, 0) / students.length) || 0,
+    averageGrade: Math.round(
+  students.reduce((acc, s) => acc + (s.grade ?? 0), 0) / students.length
+) || 0,
+
   }
 
   const groupedStudents = groupStudentsByEducationalLevel(filteredStudents)
@@ -383,8 +397,8 @@ export function StudentDashboard() {
               .map(([level, levelStudents]) => {
                 const studentsByClass = levelStudents.reduce(
                   (acc, student) => {
-                    if (!acc[student.class]) acc[student.class] = []
-                    acc[student.class].push(student)
+                    if (!acc[student.class_id]) acc[student.class_id] = []
+                    acc[student.class_id].push(student)
                     return acc
                   },
                   {} as Record<string, Student[]>,
@@ -480,15 +494,15 @@ export function StudentDashboard() {
                                           <div className="flex items-center justify-between">
                                             <span className="text-xs text-gray-600">Grade:</span>
                                             <Badge
-                                              className={`${getGradeColor(student.grade)} text-xs`}
+                                              className={`${getGradeColor(Number(student.grade))} text-xs`}
                                               variant="secondary"
                                             >
-                                              {student.grade}%
+                                              {Number(student.grade)}%
                                             </Badge>
                                           </div>
                                           <div className="flex items-center justify-between">
                                             <span className="text-xs text-gray-600">Age:</span>
-                                            <span className="text-xs font-medium">{student.age} years</span>
+                                            <span className="text-xs font-medium">{calculateAge(student.dob)} years</span>
                                           </div>
                                           <div className="flex items-center justify-between">
                                             <span className="text-xs text-gray-600">Fees:</span>

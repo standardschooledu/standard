@@ -11,7 +11,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Phone, User, GraduationCap, DollarSign } from "lucide-react"
-import { addStudent, type Student } from "@/lib/auth"
+import { addStudent } from "@/lib/auth"
+import type { Student } from "@/types/student"
 
 interface AddStudentModalProps {
   isOpen: boolean
@@ -21,8 +22,12 @@ interface AddStudentModalProps {
 
 export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentModalProps) {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
+    middleName: "",
+    gender: "",
     email: "",
+    dateOfBirth: "",
     age: "",
     class: "",
     educationalLevel: "",
@@ -49,40 +54,58 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
 
   const streamOptions = ["science", "arts", "commercial"]
 
-  const handleInputChange = (field: string, value: string) => {
+ const handleInputChange = (field: string, value: string) => {
+    // Define fields that should always be numbers
+    const numericFields = ["grade", "feesTotal", "feesPaid"];
+
     setFormData((prev) => ({
       ...prev,
-      [field]: value,
-    }))
+      [field]: numericFields.includes(field)
+        ? value === "" ? "" : Number(value) // convert to number (but allow empty string so input can clear)
+        : value,
+    }));
 
     // Auto-set educational level based on class
     if (field === "class") {
-      const level = Object.entries(classOptions).find(([_, classes]) => classes.includes(value))?.[0]
+      const level = Object.entries(classOptions).find(([_, classes]) =>
+        classes.includes(value)
+      )?.[0];
+
       if (level) {
         setFormData((prev) => ({
           ...prev,
           educationalLevel: level,
-          // Reset stream if not senior secondary
           stream: level !== "senior-secondary" ? "" : prev.stream,
-        }))
+        }));
       }
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
     try {
+      // Calculate age properly
+      const dob = new Date(formData.dateOfBirth)
+      const today = new Date()
+      let age = today.getFullYear() - dob.getFullYear()
+      const m = today.getMonth() - dob.getMonth()
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+        age-- // adjust if birthday hasn't happened yet this year
+      }
+
       const newStudent: Omit<Student, "id" | "enrollmentDate"> = {
-        name: formData.name,
-        email: formData.email,
-        age: Number.parseInt(formData.age),
-        class: formData.class,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        middleName: formData.middleName,
+        // email: formData.email || null, // optional email
+        dob: formData.dateOfBirth,
+        class_id: formData.class,
         educationalLevel: formData.educationalLevel as Student["educationalLevel"],
         stream: formData.stream as Student["stream"],
         status: formData.status as Student["status"],
-        grade: Number.parseInt(formData.grade),
+        grade: Number(formData.grade),
         parentContact: {
           name: formData.parentName,
           phone: formData.parentPhone,
@@ -90,13 +113,17 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
         },
         address: formData.address,
         fees: {
-          tuition: Number.parseInt(formData.feesTotal),
-          paid: Number.parseInt(formData.feesPaid),
-          balance: Number.parseInt(formData.feesTotal) - Number.parseInt(formData.feesPaid),
+          tuition: Number(formData.feesTotal) || 0,
+          paid: Number(formData.feesPaid) || 0,
+          balance: (Number(formData.feesTotal) || 0) - (Number(formData.feesPaid) || 0),
           dueDate: formData.feesDueDate,
         },
         subjects: [], // Will be populated based on class/stream
-        results: [], // Empty for new students
+        results: [],
+        // age, // computed value
+        gender: formData.gender,
+        parentName: "",
+        name: ""
       }
 
       const addedStudent = await addStudent(newStudent)
@@ -105,8 +132,12 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
 
       // Reset form
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
+        middleName: "",
         email: "",
+        dateOfBirth: "",
+        gender: "",
         age: "",
         class: "",
         educationalLevel: "",
@@ -120,6 +151,7 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
         feesTotal: "",
         feesPaid: "",
         feesDueDate: "",
+        // gender: "",
       })
     } catch (error) {
       console.error("Failed to add student:", error)
@@ -128,21 +160,54 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
     }
   }
 
+
   const isFormValid = () => {
-    const required = [
-      "name",
-      "email",
-      "age",
+    // Required text fields (must not be empty)
+    const requiredTextFields = [
+      "firstName",
+      "lastName",
+      "middleName",
+      "gender",
       "class",
-      "grade",
+      "educationalLevel",
+      "stream",
+      "status",
       "parentName",
       "parentPhone",
-      "feesTotal",
-      "feesPaid",
+      "address",
       "feesDueDate",
-    ]
-    return required.every((field) => formData[field as keyof typeof formData].trim() !== "")
-  }
+      "dateOfBirth",
+    ];
+
+    // Check all required text fields
+    for (const field of requiredTextFields) {
+      const value = formData[field as keyof typeof formData];
+      if (!value || value.toString().trim() === "") {
+        return false;
+      }
+      }
+
+      // Numeric fields (can be zero, but must be numbers)
+      const numericFields = ["grade", "feesTotal", "feesPaid"];
+      for (const field of numericFields) {
+        const value = formData[field as keyof typeof formData];
+        if (value === "" || isNaN(Number(value))) {
+          return false;
+        }
+      }
+
+    // Email (optional, but validate if provided)
+    if (formData.email && formData.email.trim() !== "") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email.trim())) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -154,7 +219,9 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
           </DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit } className="space-y-6">
+          
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             {/* Student Information */}
             <Card>
@@ -166,16 +233,57 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="name" className="text-sm">
-                      Full Name *
+                      First Name *
                     </Label>
                     <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
-                      placeholder="Enter student's full name"
+                      id="firstName"
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange("firstName", e.target.value)}
+                      placeholder="Enter student's first name"
                       required
                       className="text-sm"
                     />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName" className="text-sm">
+                      Last Name *
+                    </Label>
+                    <Input
+                      id="lastName"
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange("lastName", e.target.value)}
+                      placeholder="Enter student's last name"
+                      required
+                      className="text-sm"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="middleName" className="text-sm">
+                      Middle Name *
+                    </Label>
+                    <Input
+                      id="middleName"
+                      value={formData.middleName}
+                      onChange={(e) => handleInputChange("middleName", e.target.value)}
+                      placeholder="Enter student's middle name"
+                      required
+                      className="text-sm"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="gender" className="text-sm">Gender *</Label>
+                    <Select
+                      value={formData.gender}
+                      onValueChange={(value) => handleInputChange("gender", value as "male" | "female")}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select gender" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div>
                     <Label htmlFor="email" className="text-sm">
@@ -185,7 +293,7 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      onChange={(e) => handleInputChange("email", e.target.value as "male" | "female")}
                       placeholder="student@school.edu"
                       required
                       className="text-sm"
@@ -193,17 +301,15 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
                   </div>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <Label htmlFor="age" className="text-sm">
-                        Age *
+                      <Label htmlFor="dateOfBirth" className="text-sm">
+                        Date of Birth *
                       </Label>
                       <Input
-                        id="age"
-                        type="number"
-                        min="3"
-                        max="25"
-                        value={formData.age}
-                        onChange={(e) => handleInputChange("age", e.target.value)}
-                        placeholder="Age"
+                        id="dateOfBirth"
+                        type="date"
+                        value={formData.dateOfBirth}
+                        onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
+                        placeholder="Date of Birth"
                         required
                         className="text-sm"
                       />
@@ -432,7 +538,7 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
             <Button type="button" variant="outline" onClick={onClose} className="w-full sm:w-auto bg-transparent">
               Cancel
             </Button>
-            <Button type="submit" disabled={!isFormValid() || isSubmitting} className="w-full sm:w-auto">
+            <Button type="submit" className="w-full sm:w-auto">
               {isSubmitting ? "Adding Student..." : "Add Student"}
             </Button>
           </DialogFooter>
