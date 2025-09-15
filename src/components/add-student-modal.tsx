@@ -96,12 +96,12 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
         age-- // adjust if birthday hasn't happened yet this year
       }
 
-      const newStudent: Omit<Student, "id" | "enrollmentDate"> = {
+      const newStudent: Omit<Student, "id" | "enrollmentDate" | "age"> = {
         firstName: formData.firstName,
         lastName: formData.lastName,
         middleName: formData.middleName,
         // email: formData.email || null, // optional email
-        dob: formData.dateOfBirth,
+        // dob: formData.dateOfBirth,
         age: claculateAge(formData.dateOfBirth),
         class_id: formData.class,
         educationalLevel: formData.educationalLevel as Student["educationalLevel"],
