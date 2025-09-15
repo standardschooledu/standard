@@ -25,6 +25,7 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
     firstName: "",
     lastName: "",
     middleName: "",
+    age: "",
     gender: "",
     email: "",
     dateOfBirth: "",
