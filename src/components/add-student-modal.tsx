@@ -101,8 +101,8 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
         lastName: formData.lastName,
         middleName: formData.middleName,
         // email: formData.email || null, // optional email
-        // dob: formData.dateOfBirth,
-        age: claculateAge(formData.dateOfBirth),
+        dob: formData.dateOfBirth,
+        // age: claculateAge(formData.dateOfBirth),
         class_id: formData.class,
         educationalLevel: formData.educationalLevel as Student["educationalLevel"],
         stream: formData.stream as Student["stream"],
