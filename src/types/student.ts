@@ -19,7 +19,7 @@ export interface Student {
   email?: string
   gender: string
   dob: string
-  age: number
+  // age: number
   address: string
   status: string              // <-- add
   grade?: number
