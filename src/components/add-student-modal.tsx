@@ -121,7 +121,7 @@ export function AddStudentModal({ isOpen, onClose, onStudentAdded }: AddStudentM
         },
         subjects: [], // Will be populated based on class/stream
         results: [],
-        // age, // computed value
+        age, // computed value
         gender: formData.gender,
         parentName: "",
         name: ""
